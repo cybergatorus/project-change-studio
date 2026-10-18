@@ -147,3 +147,48 @@ export function accuracyLabel(m: number): string {
   if (m <= 1000) return "Fair (neighborhood-level)";
   return "Approximate (city-level)";
 }
+
+export type IpSource = { name: string; city?: string; region?: string; country?: string; lat?: number; lon?: number; timezone?: string; isProxy?: boolean };
+
+async function safeJson(url: string) {
+  try {
+    const r = await fetch(url);
+    if (!r.ok) return null;
+    return await r.json();
+  } catch {
+    return null;
+  }
+}
+
+/** Query several independent IP databases in parallel so results can be cross-checked. */
+export async function lookupIpSources(): Promise<IpSource[]> {
+  const [geojs, free] = await Promise.all([
+    safeJson("https://get.geojs.io/v1/ip/geo.json"),
+    safeJson("https://freeipapi.com/api/json"),
+  ]);
+  const out: IpSource[] = [];
+  if (geojs) out.push({ name: "GeoJS", city: geojs.city, region: geojs.region, country: geojs.country, lat: Number(geojs.latitude), lon: Number(geojs.longitude), timezone: geojs.timezone });
+  if (free) out.push({ name: "FreeIPAPI", city: free.cityName, region: free.regionName, country: free.countryName, lat: free.latitude, lon: free.longitude, timezone: free.timeZones?.[0], isProxy: free.isProxy });
+  return out;
+}
+
+export function distanceKm(aLat: number, aLon: number, bLat: number, bLon: number): number {
+  const R = 6371;
+  const toRad = (d: number) => (d * Math.PI) / 180;
+  const dLat = toRad(bLat - aLat);
+  const dLon = toRad(bLon - aLon);
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(aLat)) * Math.cos(toRad(bLat)) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+
+/** Offset in minutes from UTC for an IANA zone right now. */
+export function tzOffset(zone: string): number | null {
+  try {
+    const now = new Date();
+    const local = new Date(now.toLocaleString("en-US", { timeZone: zone }));
+    const utc = new Date(now.toLocaleString("en-US", { timeZone: "UTC" }));
+    return Math.round((local.getTime() - utc.getTime()) / 60000);
+  } catch {
+    return null;
+  }
+}
