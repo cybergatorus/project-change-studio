@@ -23,6 +23,21 @@ export function pageHead({
   schemas?: unknown[];
 }) {
   const url = abs(path);
+  const webPage = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${url}#webpage`,
+    url,
+    name: title,
+    description,
+    inLanguage: "en",
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    about: { "@type": "Thing", name: "Current location" },
+    primaryImageOfPage: { "@type": "ImageObject", url: OG_IMAGE, width: 1200, height: 630 },
+    datePublished: "2026-10-18",
+    dateModified: UPDATED,
+    speakable: { "@type": "SpeakableSpecification", cssSelector: ["h1", "[data-speakable]"] },
+  };
   return {
     meta: [
       { title },
@@ -40,7 +55,7 @@ export function pageHead({
       { name: "twitter:image", content: OG_IMAGE },
     ],
     links: [{ rel: "canonical", href: url }],
-    scripts: schemas.map(ld),
+    scripts: [webPage, ...schemas].map(ld),
   };
 }
 
