@@ -60,7 +60,7 @@ const siteGraph = {
       "@type": "WebSite",
       "@id": `${SITE_URL}/#website`,
       name: SITE_NAME,
-      alternateName: ["WhereIAmRightNow", "Where Am I At Right Now"],
+      alternateName: ["whereiamrightnow.org", "Where Am I At Right Now"],
       url: `${SITE_URL}/`,
       inLanguage: "en",
       publisher: { "@id": `${SITE_URL}/#organization` },

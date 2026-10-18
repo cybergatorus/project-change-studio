@@ -6,9 +6,9 @@ export const Route = createFileRoute("/about")({
   head: () =>
     pageHead({
       path: "/about",
-      title: "About WhereIAmRightNow.org — Free, Private Location Finder",
-      description: "Why we built WhereIAmRightNow.org: a fast, private, ad-light way to see where you are right now, powered by your device and OpenStreetMap.",
-      schemas: [breadcrumbLd([{ name: "About", path: "/about" }]), { "@context": "https://schema.org", "@type": "AboutPage", name: "About WhereIAmRightNow.org" }],
+      title: "About Where Am I Right Now — Free, Private Location Finder",
+      description: "Why we built Where Am I Right Now: a fast, private, ad-light way to see where you are right now, powered by your device and OpenStreetMap.",
+      schemas: [breadcrumbLd([{ name: "About", path: "/about" }]), { "@context": "https://schema.org", "@type": "AboutPage", name: "About Where Am I Right Now" }],
     }),
   component: () => (
     <>
@@ -16,7 +16,7 @@ export const Route = createFileRoute("/about")({
       <PageHero eyebrow="About" title="One question, answered well" />
       <Section>
         <p>
-          WhereIAmRightNow.org exists to answer a simple question as quickly and honestly as possible: <strong>where am
+          Where Am I Right Now exists to answer a simple question as quickly and honestly as possible: <strong>where am
           I right now?</strong> No app, no account, no tracking.
         </p>
         <h2>How it works</h2>

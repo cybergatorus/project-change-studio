@@ -3,7 +3,7 @@ import { Breadcrumbs, FaqSection, PageHero } from "@/components/page-parts";
 import { breadcrumbLd, faqLd, pageHead, type FaqItem } from "@/lib/seo";
 
 const faqs: FaqItem[] = [
-  { q: "How do I find out where I am right now?", a: "Open WhereIAmRightNow.org, tap “Show where I am right now” and allow location access. Your address, coordinates and a map appear instantly." },
+  { q: "How do I find out where I am right now?", a: "Open Where Am I Right Now, tap “Show where I am right now” and allow location access. Your address, coordinates and a map appear instantly." },
   { q: "Where am I at right now if I deny location permission?", a: "We can only estimate your city from your IP address. Visit the IP location page to see that approximate location." },
   { q: "Do you store my location?", a: "No. We have no accounts and keep no location logs. Coordinates are sent only to OpenStreetMap's address service so it can return your street address." },
   { q: "How accurate is the location?", a: "Phones with GPS are usually accurate to 3–10 m outdoors, Wi-Fi-located laptops to 15–50 m, and IP-based locations to roughly 5–50 km." },

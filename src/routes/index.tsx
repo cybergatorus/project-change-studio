@@ -18,7 +18,7 @@ const faqs: FaqItem[] = [
 ];
 
 const steps = [
-  { name: "Tap the button", text: "Tap “Show where I am right now” on WhereIAmRightNow.org." },
+  { name: "Tap the button", text: "Tap “Show where I am right now” on Where Am I Right Now." },
   { name: "Allow location", text: "Choose Allow when your browser asks to share your location." },
   { name: "See your location", text: "Read your exact address, coordinates and accuracy, and see the pin on the map." },
   { name: "Share or copy", text: "Copy any detail or share a Google Maps link with friends or family." },

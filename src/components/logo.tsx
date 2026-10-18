@@ -8,7 +8,7 @@ export function Logo() {
         <MapPin className="h-5 w-5 text-primary-foreground" />
       </span>
       <span className="font-display text-lg font-bold tracking-tight">
-        WhereAmI<span className="text-primary">RightNow</span>
+        Where Am I <span className="text-primary">Right Now</span>
       </span>
     </Link>
   );

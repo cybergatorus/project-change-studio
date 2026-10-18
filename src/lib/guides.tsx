@@ -178,7 +178,7 @@ export const GUIDES: Guide[] = [
     ),
     faqs: [
       { q: "I clicked Block by mistake. How do I undo it?", a: "Click the padlock or settings icon left of the website address, change Location to Allow (or Reset permission), and reload the page." },
-      { q: "Is it safe to allow location for a website?", a: "Only allow sites you trust. On WhereIAmRightNow.org your coordinates are processed in your browser and are never stored on our servers." },
+      { q: "Is it safe to allow location for a website?", a: "Only allow sites you trust. On Where Am I Right Now your coordinates are processed in your browser and are never stored on our servers." },
     ],
   },
   {
