@@ -11,7 +11,7 @@ export function PageHero({ eyebrow, title, children }: { eyebrow?: string; title
       <div className="relative mx-auto max-w-4xl px-4 pb-12 pt-14 text-center sm:px-6 sm:pt-20">
         {eyebrow && <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">{eyebrow}</p>}
         <h1 className="mt-3 text-4xl font-extrabold leading-[1.05] sm:text-6xl">{title}</h1>
-        {children && <div className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground">{children}</div>}
+        {children && <div data-speakable className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground">{children}</div>}
       </div>
     </section>
   );

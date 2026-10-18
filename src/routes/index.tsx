@@ -6,7 +6,7 @@ import { GUIDES } from "@/lib/guides";
 import { faqLd, howToLd, pageHead, webAppLd, type FaqItem } from "@/lib/seo";
 
 const TITLE = "Where Am I Right Now? See Your Exact Location & Address";
-const DESC = "Where am I right now? Instantly see your current location on a map with your exact street address, ZIP code and GPS coordinates. Free, private, no app needed.";
+const DESC = "Where am I right now? Instantly see where you are located right now on a map with your exact street address, ZIP code and GPS coordinates. Free, private, no app needed.";
 
 const faqs: FaqItem[] = [
   { q: "Where am I right now?", a: "Tap “Show where I am right now” at the top of this page and allow location access. You'll instantly see your street address, city, ZIP or postal code, country, GPS coordinates and a live map pin." },
