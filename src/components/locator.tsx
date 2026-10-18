@@ -5,7 +5,7 @@ import {
   type AddressInfo, type GpsFix,
 } from "@/lib/geo";
 
-type Focus = "overview" | "address" | "coords";
+type Focus = "overview" | "address" | "coords" | "city" | "zip";
 
 function CopyBtn({ value, label }: { value: string; label: string }) {
   const [done, setDone] = useState(false);
@@ -115,15 +115,25 @@ export function Locator({ focus = "overview", cta = "Show where I am right now" 
                 <MapPin className="h-5 w-5" />
               </span>
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-primary">You are right now at</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-primary">{focus === "city" ? "You are right now in" : focus === "zip" ? "Your ZIP / postal code is" : "You are right now at"}</p>
                 <p className="mt-1 font-display text-xl font-bold leading-snug">
-                  {addr ? shortAddress(addr) : "Looking up street address…"}
+                  {!addr ? "Looking up your address…" : focus === "city" ? [addr.city ?? addr.county, addr.state, addr.country].filter(Boolean).join(", ") : focus === "zip" ? (addr.postcode ?? "No postal code mapped here") : shortAddress(addr)}
                 </p>
               </div>
             </div>
 
             <div className="mt-5">
-              {focus === "address" && addr ? (
+              {(focus === "city" || focus === "zip") && addr ? (
+                <>
+                  <Row label="ZIP / Postal code" value={addr.postcode} />
+                  <Row label="City / Town" value={addr.city} />
+                  <Row label="Neighborhood" value={addr.neighbourhood} />
+                  <Row label="County / District" value={addr.county} />
+                  <Row label="State / Region" value={addr.state} />
+                  <Row label="Country" value={addr.country} />
+                  <Row label="Street address" value={shortAddress(addr)} />
+                </>
+              ) : focus === "address" && addr ? (
                 <>
                   <Row label="Street" value={[addr.houseNumber, addr.road].filter(Boolean).join(" ")} />
                   <Row label="Neighborhood" value={addr.neighbourhood} />
