@@ -178,7 +178,7 @@ export const GUIDES: Guide[] = [
     ),
     faqs: [
       { q: "I clicked Block by mistake. How do I undo it?", a: "Click the padlock or settings icon left of the website address, change Location to Allow (or Reset permission), and reload the page." },
-      { q: "Is it safe to allow location for a website?", a: "Only allow sites you trust. On WhereIAmRightNow.org your coordinates are processed in your browser and are never stored on our servers." },
+      { q: "Is it safe to allow location for a website?", a: "Only allow sites you trust. On Where Am I Right Now, your coordinates are processed in your browser and are never stored on our servers." },
     ],
   },
   {
@@ -271,6 +271,120 @@ export const GUIDES: Guide[] = [
       { q: "Why does my IP change?", a: "Most home and mobile providers assign dynamic IPs that change periodically, when your router restarts, or when you switch networks." },
     ],
   },
+  {
+    slug: "find-my-location-on-google-maps",
+    short: "Find location on Google & Apple Maps",
+    title: "How to Find Where You Are Right Now on Google Maps and Apple Maps",
+    description:
+      "Step-by-step: see your current location, get your exact address and copy your coordinates in Google Maps and Apple Maps on iPhone, Android and desktop.",
+    readMins: 5,
+    steps: [
+      { name: "Open the maps app", text: "Open Google Maps or Apple Maps and make sure location is allowed." },
+      { name: "Tap the location button", text: "Tap the arrow or crosshair button to centre the map on the blue dot." },
+      { name: "Tap the blue dot", text: "Tap the blue dot to see your address and options to share or save your location." },
+      { name: "Drop a pin for coordinates", text: "Long-press your position to drop a pin and view its latitude and longitude." },
+    ],
+    body: () => (
+      <>
+        <p>
+          Map apps are great for navigation, but finding your exact address or coordinates in them isn't always obvious.
+          Here's how to do it in each app — and when a dedicated <a href="/">where am I right now</a> tool is faster.
+        </p>
+        <h2>Google Maps on Android and iPhone</h2>
+        <ol>
+          <li>Open Google Maps and tap the <strong>location button</strong> (the crosshair, bottom right).</li>
+          <li>Tap the <strong>blue dot</strong>. A panel shows options such as <em>Share location</em> and <em>Save parking</em>.</li>
+          <li>To see coordinates, <strong>long-press</strong> on the blue dot to drop a red pin. The coordinates appear in the search bar.</li>
+          <li>Swipe up on the pin card to see the nearest address and copy it.</li>
+        </ol>
+        <h2>Google Maps on a computer</h2>
+        <ol>
+          <li>Go to maps.google.com and click the <strong>location button</strong> at the bottom right.</li>
+          <li>Allow your browser to share your location.</li>
+          <li><strong>Right-click</strong> on the blue dot — the first line in the menu is your latitude and longitude. Click it to copy.</li>
+        </ol>
+        <h2>Apple Maps on iPhone and iPad</h2>
+        <ol>
+          <li>Open Maps and tap the <strong>arrow</strong> to centre on your position.</li>
+          <li>Tap the <strong>blue dot</strong> to see your address and a <em>Share My Location</em> option.</li>
+          <li>Swipe up on the card to see your latitude, longitude and elevation.</li>
+        </ol>
+        <h2>The blue circle around the dot</h2>
+        <p>
+          In both apps, the lighter circle around the blue dot is the <strong>accuracy radius</strong>. A small circle
+          means a precise GPS fix; a large circle means the app is relying on Wi-Fi, cell towers or IP. Our tool shows
+          the same thing as a number in metres.
+        </p>
+        <h2>Why use a web tool instead?</h2>
+        <ul>
+          <li>No app to install or sign in to.</li>
+          <li>Address, ZIP code, coordinates and accuracy on one screen.</li>
+          <li>Coordinates in DD, DMS and DDM, each with a copy button.</li>
+          <li>Works on any device, including work laptops where apps are restricted.</li>
+        </ul>
+      </>
+    ),
+    faqs: [
+      { q: "How do I see my coordinates on Google Maps?", a: "On mobile, long-press your blue dot to drop a pin — the coordinates appear in the search bar. On desktop, right-click the blue dot and click the coordinates to copy them." },
+      { q: "Why does Google Maps show my location in the wrong place?", a: "Usually Precise Location is off, Wi-Fi is disabled, or your phone's compass needs calibrating. Turn on precise location and Wi-Fi, then step outside for a fresh GPS fix." },
+    ],
+  },
+  {
+    slug: "find-real-location-behind-vpn",
+    short: "Your real location behind a VPN",
+    title: "Does a VPN Hide Where I Am Right Now? IP vs Real Location Explained",
+    description:
+      "What a VPN does and doesn't hide about your location, how sites detect VPNs and proxies, and how to see your real position even when your IP points elsewhere.",
+    readMins: 5,
+    body: () => (
+      <>
+        <p>
+          You connect to a VPN in London while sitting in Chicago. Websites now think you're in London — but your phone's
+          maps still show Chicago. Both are "your location", and understanding the difference matters for privacy and
+          for getting accurate results.
+        </p>
+        <h2>What a VPN changes</h2>
+        <ul>
+          <li><strong>Your public IP address</strong> — replaced by the VPN server's IP.</li>
+          <li><strong>Your IP location</strong> — the city, region and country websites see.</li>
+          <li><strong>Your visible ISP</strong> — shows the VPN's hosting provider instead of your own.</li>
+        </ul>
+        <h2>What a VPN does not change</h2>
+        <ul>
+          <li><strong>GPS position</strong> — calculated on your device from satellites.</li>
+          <li><strong>Wi-Fi positioning</strong> — based on networks physically around you.</li>
+          <li><strong>Your device's time zone and language</strong> — unless you change them manually.</li>
+        </ul>
+        <h2>How websites spot a VPN or proxy</h2>
+        <ol>
+          <li><strong>Time-zone mismatch</strong> — device clock says one zone, IP says another.</li>
+          <li><strong>Known data-centre ranges</strong> — VPN servers live in hosting networks, not home broadband.</li>
+          <li><strong>Database disagreement</strong> — different IP databases often place VPN IPs in different cities.</li>
+          <li><strong>GPS vs IP distance</strong> — if you share precise location, a large gap is a clear sign.</li>
+        </ol>
+        <p>
+          Our <a href="/ip-location">where am I right now IP</a> page runs all four checks and shows you the result.
+        </p>
+        <h2>Can anyone find my real location through a VPN?</h2>
+        <p>
+          Not from your IP address — that's the point of a VPN. A website can only learn your precise location if you
+          grant location permission, or if something leaks, such as a WebRTC leak in an outdated browser or a VPN that
+          drops its connection. Keep your browser updated and use your VPN's kill switch for the best protection.
+        </p>
+        <h2>Seeing your true location while the VPN stays on</h2>
+        <p>
+          Because GPS ignores your network, you can keep your VPN connected and still use the{" "}
+          <a href="/">where am I right now</a> locator to see your real street address. The location stays on your
+          device; only the coordinates are sent to look up the address.
+        </p>
+      </>
+    ),
+    faqs: [
+      { q: "Does a VPN change my GPS location?", a: "No. A VPN only changes your IP address. GPS and Wi-Fi positioning happen on your device and are not affected." },
+      { q: "Why does my phone show my real location when my VPN is on?", a: "Map apps use GPS and Wi-Fi, which a VPN doesn't touch. Only websites relying on your IP address see the VPN location." },
+    ],
+  },
 ];
+
 
 export const getGuide = (slug: string) => GUIDES.find((g) => g.slug === slug);

@@ -6,8 +6,8 @@ export const Route = createFileRoute("/terms")({
   head: () =>
     pageHead({
       path: "/terms",
-      title: "Terms of Use — WhereIAmRightNow.org",
-      description: "Terms for using WhereIAmRightNow.org, including accuracy limitations and that the service is not a substitute for emergency services.",
+      title: "Terms of Use — Where Am I Right Now",
+      description: "Terms for using Where Am I Right Now, including accuracy limitations and that the service is not a substitute for emergency services.",
       schemas: [breadcrumbLd([{ name: "Terms of Use", path: "/terms" }])],
     }),
   component: () => (
@@ -15,7 +15,7 @@ export const Route = createFileRoute("/terms")({
       <Breadcrumbs items={[{ name: "Terms of Use" }]} />
       <PageHero eyebrow="Legal" title="Terms of Use" />
       <Section>
-        <p>Last updated: October 18, 2026. By using WhereIAmRightNow.org you agree to these terms.</p>
+        <p>Last updated: October 18, 2026. By using Where Am I Right Now you agree to these terms.</p>
         <h2>Accuracy</h2>
         <p>
           Locations, addresses and IP information are estimates provided "as is". Accuracy depends on your device,

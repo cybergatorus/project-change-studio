@@ -6,8 +6,8 @@ export const Route = createFileRoute("/privacy")({
   head: () =>
     pageHead({
       path: "/privacy",
-      title: "Privacy Policy — WhereIAmRightNow.org",
-      description: "How WhereIAmRightNow.org handles your location and IP address: processed in your browser, never stored, never sold.",
+      title: "Privacy Policy — Where Am I Right Now",
+      description: "How Where Am I Right Now handles your location and IP address: processed in your browser, never stored, never sold.",
       schemas: [breadcrumbLd([{ name: "Privacy Policy", path: "/privacy" }])],
     }),
   component: () => (

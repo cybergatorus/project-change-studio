@@ -43,7 +43,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-ink-foreground/15">
         <p className="mx-auto max-w-6xl px-4 py-6 text-xs text-ink-foreground/60 sm:px-6">
-          © 2026 WhereIAmRightNow.org · Map data © OpenStreetMap contributors · Not for emergency use — always call your local emergency number.
+          © 2026 Where Am I Right Now (whereiamrightnow.org) · Map data © OpenStreetMap contributors · Not for emergency use — always call your local emergency number.
         </p>
       </div>
     </footer>
