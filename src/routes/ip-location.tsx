@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import IMG from "@/assets/guides/what-your-ip-address-reveals.jpg";
 import { IpPanel } from "@/components/ip-panel";
 import { Breadcrumbs, FaqSection, PageHero, RelatedTools, Section } from "@/components/page-parts";
 import { breadcrumbLd, faqLd, pageHead, webAppLd, type FaqItem } from "@/lib/seo";
@@ -43,6 +44,7 @@ function Page() {
       <section className="mx-auto max-w-5xl px-4 py-12 sm:px-6"><IpPanel /></section>
       <Section>
         <h2>What "where am I right now IP" actually shows</h2>
+        <figure className="not-prose my-8"><img src={IMG} alt="How IP geolocation maps your internet connection to an approximate city" width={1200} height={640} loading="lazy" className="w-full rounded-3xl border border-border shadow-card" /><figcaption className="mt-2 text-center text-sm text-muted-foreground">How IP geolocation maps your internet connection to an approximate city</figcaption></figure>
         <p>
           Your public IP address is assigned by your internet provider and travels with every request you make online.
           Geolocation databases map blocks of IP addresses to the place where the provider uses them — so the city
