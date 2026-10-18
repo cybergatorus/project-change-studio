@@ -84,7 +84,7 @@ function Home() {
       <Section>
         <h2>How to find where you are right now</h2>
         <ol>
-          {steps.map((s) => <li key={s.name}><strong>{s.name}.</strong> {s.text.replace(/^[^.]*on WhereIAmRightNow.org\./, "")}</li>)}
+          {steps.map((s) => <li key={s.name}><strong>{s.name}.</strong> {s.text}</li>)}
         </ol>
         <p>
           The result shows <strong>where you are at right now</strong> as a human-readable address, raw coordinates and an

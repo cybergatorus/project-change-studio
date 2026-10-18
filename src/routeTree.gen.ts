@@ -10,34 +10,21 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsRouteImport } from './routes/terms'
-import { Route as StatesRouteImport } from './routes/states'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as MyCoordinatesRouteImport } from './routes/my-coordinates'
+import { Route as IpLocationRouteImport } from './routes/ip-location'
 import { Route as FaqRouteImport } from './routes/faq'
-import { Route as DisclaimerRouteImport } from './routes/disclaimer'
-import { Route as DataSourcesRouteImport } from './routes/data-sources'
+import { Route as ExactAddressRouteImport } from './routes/exact-address'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ToolsZipRouteImport } from './routes/tools.zip'
-import { Route as ToolsCoordinatesRouteImport } from './routes/tools.coordinates'
-import { Route as ToolsAddressRouteImport } from './routes/tools.address'
-import { Route as StatesStateRouteImport } from './routes/states.$state'
-import { Route as LearnZipVsCountyRouteImport } from './routes/learn.zip-vs-county'
-import { Route as LearnWhatIsACountyRouteImport } from './routes/learn.what-is-a-county'
-import { Route as LearnHowCountyDetectionWorksRouteImport } from './routes/learn.how-county-detection-works'
-import { Route as LearnCountyVsCityRouteImport } from './routes/learn.county-vs-city'
-import { Route as LearnCountyGovernmentRouteImport } from './routes/learn.county-government'
-import { Route as LearnCountyFipsCodesRouteImport } from './routes/learn.county-fips-codes'
+import { Route as GuidesIndexRouteImport } from './routes/guides.index'
+import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const StatesRoute = StatesRouteImport.update({
-  id: '/states',
-  path: '/states',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -50,19 +37,24 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MyCoordinatesRoute = MyCoordinatesRouteImport.update({
+  id: '/my-coordinates',
+  path: '/my-coordinates',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IpLocationRoute = IpLocationRouteImport.update({
+  id: '/ip-location',
+  path: '/ip-location',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DisclaimerRoute = DisclaimerRouteImport.update({
-  id: '/disclaimer',
-  path: '/disclaimer',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DataSourcesRoute = DataSourcesRouteImport.update({
-  id: '/data-sources',
-  path: '/data-sources',
+const ExactAddressRoute = ExactAddressRouteImport.update({
+  id: '/exact-address',
+  path: '/exact-address',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -80,55 +72,14 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ToolsZipRoute = ToolsZipRouteImport.update({
-  id: '/tools/zip',
-  path: '/tools/zip',
+const GuidesIndexRoute = GuidesIndexRouteImport.update({
+  id: '/guides/',
+  path: '/guides/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ToolsCoordinatesRoute = ToolsCoordinatesRouteImport.update({
-  id: '/tools/coordinates',
-  path: '/tools/coordinates',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ToolsAddressRoute = ToolsAddressRouteImport.update({
-  id: '/tools/address',
-  path: '/tools/address',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const StatesStateRoute = StatesStateRouteImport.update({
-  id: '/$state',
-  path: '/$state',
-  getParentRoute: () => StatesRoute,
-} as any)
-const LearnZipVsCountyRoute = LearnZipVsCountyRouteImport.update({
-  id: '/learn/zip-vs-county',
-  path: '/learn/zip-vs-county',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LearnWhatIsACountyRoute = LearnWhatIsACountyRouteImport.update({
-  id: '/learn/what-is-a-county',
-  path: '/learn/what-is-a-county',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LearnHowCountyDetectionWorksRoute =
-  LearnHowCountyDetectionWorksRouteImport.update({
-    id: '/learn/how-county-detection-works',
-    path: '/learn/how-county-detection-works',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const LearnCountyVsCityRoute = LearnCountyVsCityRouteImport.update({
-  id: '/learn/county-vs-city',
-  path: '/learn/county-vs-city',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LearnCountyGovernmentRoute = LearnCountyGovernmentRouteImport.update({
-  id: '/learn/county-government',
-  path: '/learn/county-government',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LearnCountyFipsCodesRoute = LearnCountyFipsCodesRouteImport.update({
-  id: '/learn/county-fips-codes',
-  path: '/learn/county-fips-codes',
+const GuidesSlugRoute = GuidesSlugRouteImport.update({
+  id: '/guides/$slug',
+  path: '/guides/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -136,68 +87,44 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/data-sources': typeof DataSourcesRoute
-  '/disclaimer': typeof DisclaimerRoute
+  '/exact-address': typeof ExactAddressRoute
   '/faq': typeof FaqRoute
+  '/ip-location': typeof IpLocationRoute
+  '/my-coordinates': typeof MyCoordinatesRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/states': typeof StatesRouteWithChildren
   '/terms': typeof TermsRoute
-  '/learn/county-fips-codes': typeof LearnCountyFipsCodesRoute
-  '/learn/county-government': typeof LearnCountyGovernmentRoute
-  '/learn/county-vs-city': typeof LearnCountyVsCityRoute
-  '/learn/how-county-detection-works': typeof LearnHowCountyDetectionWorksRoute
-  '/learn/what-is-a-county': typeof LearnWhatIsACountyRoute
-  '/learn/zip-vs-county': typeof LearnZipVsCountyRoute
-  '/states/$state': typeof StatesStateRoute
-  '/tools/address': typeof ToolsAddressRoute
-  '/tools/coordinates': typeof ToolsCoordinatesRoute
-  '/tools/zip': typeof ToolsZipRoute
+  '/guides/$slug': typeof GuidesSlugRoute
+  '/guides/': typeof GuidesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/data-sources': typeof DataSourcesRoute
-  '/disclaimer': typeof DisclaimerRoute
+  '/exact-address': typeof ExactAddressRoute
   '/faq': typeof FaqRoute
+  '/ip-location': typeof IpLocationRoute
+  '/my-coordinates': typeof MyCoordinatesRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/states': typeof StatesRouteWithChildren
   '/terms': typeof TermsRoute
-  '/learn/county-fips-codes': typeof LearnCountyFipsCodesRoute
-  '/learn/county-government': typeof LearnCountyGovernmentRoute
-  '/learn/county-vs-city': typeof LearnCountyVsCityRoute
-  '/learn/how-county-detection-works': typeof LearnHowCountyDetectionWorksRoute
-  '/learn/what-is-a-county': typeof LearnWhatIsACountyRoute
-  '/learn/zip-vs-county': typeof LearnZipVsCountyRoute
-  '/states/$state': typeof StatesStateRoute
-  '/tools/address': typeof ToolsAddressRoute
-  '/tools/coordinates': typeof ToolsCoordinatesRoute
-  '/tools/zip': typeof ToolsZipRoute
+  '/guides/$slug': typeof GuidesSlugRoute
+  '/guides': typeof GuidesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/data-sources': typeof DataSourcesRoute
-  '/disclaimer': typeof DisclaimerRoute
+  '/exact-address': typeof ExactAddressRoute
   '/faq': typeof FaqRoute
+  '/ip-location': typeof IpLocationRoute
+  '/my-coordinates': typeof MyCoordinatesRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/states': typeof StatesRouteWithChildren
   '/terms': typeof TermsRoute
-  '/learn/county-fips-codes': typeof LearnCountyFipsCodesRoute
-  '/learn/county-government': typeof LearnCountyGovernmentRoute
-  '/learn/county-vs-city': typeof LearnCountyVsCityRoute
-  '/learn/how-county-detection-works': typeof LearnHowCountyDetectionWorksRoute
-  '/learn/what-is-a-county': typeof LearnWhatIsACountyRoute
-  '/learn/zip-vs-county': typeof LearnZipVsCountyRoute
-  '/states/$state': typeof StatesStateRoute
-  '/tools/address': typeof ToolsAddressRoute
-  '/tools/coordinates': typeof ToolsCoordinatesRoute
-  '/tools/zip': typeof ToolsZipRoute
+  '/guides/$slug': typeof GuidesSlugRoute
+  '/guides/': typeof GuidesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -205,89 +132,58 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
-    | '/data-sources'
-    | '/disclaimer'
+    | '/exact-address'
     | '/faq'
+    | '/ip-location'
+    | '/my-coordinates'
     | '/privacy'
     | '/sitemap.xml'
-    | '/states'
     | '/terms'
-    | '/learn/county-fips-codes'
-    | '/learn/county-government'
-    | '/learn/county-vs-city'
-    | '/learn/how-county-detection-works'
-    | '/learn/what-is-a-county'
-    | '/learn/zip-vs-county'
-    | '/states/$state'
-    | '/tools/address'
-    | '/tools/coordinates'
-    | '/tools/zip'
+    | '/guides/$slug'
+    | '/guides/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/contact'
-    | '/data-sources'
-    | '/disclaimer'
+    | '/exact-address'
     | '/faq'
+    | '/ip-location'
+    | '/my-coordinates'
     | '/privacy'
     | '/sitemap.xml'
-    | '/states'
     | '/terms'
-    | '/learn/county-fips-codes'
-    | '/learn/county-government'
-    | '/learn/county-vs-city'
-    | '/learn/how-county-detection-works'
-    | '/learn/what-is-a-county'
-    | '/learn/zip-vs-county'
-    | '/states/$state'
-    | '/tools/address'
-    | '/tools/coordinates'
-    | '/tools/zip'
+    | '/guides/$slug'
+    | '/guides'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/contact'
-    | '/data-sources'
-    | '/disclaimer'
+    | '/exact-address'
     | '/faq'
+    | '/ip-location'
+    | '/my-coordinates'
     | '/privacy'
     | '/sitemap.xml'
-    | '/states'
     | '/terms'
-    | '/learn/county-fips-codes'
-    | '/learn/county-government'
-    | '/learn/county-vs-city'
-    | '/learn/how-county-detection-works'
-    | '/learn/what-is-a-county'
-    | '/learn/zip-vs-county'
-    | '/states/$state'
-    | '/tools/address'
-    | '/tools/coordinates'
-    | '/tools/zip'
+    | '/guides/$slug'
+    | '/guides/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
-  DataSourcesRoute: typeof DataSourcesRoute
-  DisclaimerRoute: typeof DisclaimerRoute
+  ExactAddressRoute: typeof ExactAddressRoute
   FaqRoute: typeof FaqRoute
+  IpLocationRoute: typeof IpLocationRoute
+  MyCoordinatesRoute: typeof MyCoordinatesRoute
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  StatesRoute: typeof StatesRouteWithChildren
   TermsRoute: typeof TermsRoute
-  LearnCountyFipsCodesRoute: typeof LearnCountyFipsCodesRoute
-  LearnCountyGovernmentRoute: typeof LearnCountyGovernmentRoute
-  LearnCountyVsCityRoute: typeof LearnCountyVsCityRoute
-  LearnHowCountyDetectionWorksRoute: typeof LearnHowCountyDetectionWorksRoute
-  LearnWhatIsACountyRoute: typeof LearnWhatIsACountyRoute
-  LearnZipVsCountyRoute: typeof LearnZipVsCountyRoute
-  ToolsAddressRoute: typeof ToolsAddressRoute
-  ToolsCoordinatesRoute: typeof ToolsCoordinatesRoute
-  ToolsZipRoute: typeof ToolsZipRoute
+  GuidesSlugRoute: typeof GuidesSlugRoute
+  GuidesIndexRoute: typeof GuidesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -297,13 +193,6 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/states': {
-      id: '/states'
-      path: '/states'
-      fullPath: '/states'
-      preLoaderRoute: typeof StatesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -320,6 +209,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/my-coordinates': {
+      id: '/my-coordinates'
+      path: '/my-coordinates'
+      fullPath: '/my-coordinates'
+      preLoaderRoute: typeof MyCoordinatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ip-location': {
+      id: '/ip-location'
+      path: '/ip-location'
+      fullPath: '/ip-location'
+      preLoaderRoute: typeof IpLocationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/faq': {
       id: '/faq'
       path: '/faq'
@@ -327,18 +230,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/disclaimer': {
-      id: '/disclaimer'
-      path: '/disclaimer'
-      fullPath: '/disclaimer'
-      preLoaderRoute: typeof DisclaimerRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/data-sources': {
-      id: '/data-sources'
-      path: '/data-sources'
-      fullPath: '/data-sources'
-      preLoaderRoute: typeof DataSourcesRouteImport
+    '/exact-address': {
+      id: '/exact-address'
+      path: '/exact-address'
+      fullPath: '/exact-address'
+      preLoaderRoute: typeof ExactAddressRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -362,110 +258,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/tools/zip': {
-      id: '/tools/zip'
-      path: '/tools/zip'
-      fullPath: '/tools/zip'
-      preLoaderRoute: typeof ToolsZipRouteImport
+    '/guides/': {
+      id: '/guides/'
+      path: '/guides'
+      fullPath: '/guides/'
+      preLoaderRoute: typeof GuidesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/tools/coordinates': {
-      id: '/tools/coordinates'
-      path: '/tools/coordinates'
-      fullPath: '/tools/coordinates'
-      preLoaderRoute: typeof ToolsCoordinatesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/tools/address': {
-      id: '/tools/address'
-      path: '/tools/address'
-      fullPath: '/tools/address'
-      preLoaderRoute: typeof ToolsAddressRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/states/$state': {
-      id: '/states/$state'
-      path: '/$state'
-      fullPath: '/states/$state'
-      preLoaderRoute: typeof StatesStateRouteImport
-      parentRoute: typeof StatesRoute
-    }
-    '/learn/zip-vs-county': {
-      id: '/learn/zip-vs-county'
-      path: '/learn/zip-vs-county'
-      fullPath: '/learn/zip-vs-county'
-      preLoaderRoute: typeof LearnZipVsCountyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/learn/what-is-a-county': {
-      id: '/learn/what-is-a-county'
-      path: '/learn/what-is-a-county'
-      fullPath: '/learn/what-is-a-county'
-      preLoaderRoute: typeof LearnWhatIsACountyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/learn/how-county-detection-works': {
-      id: '/learn/how-county-detection-works'
-      path: '/learn/how-county-detection-works'
-      fullPath: '/learn/how-county-detection-works'
-      preLoaderRoute: typeof LearnHowCountyDetectionWorksRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/learn/county-vs-city': {
-      id: '/learn/county-vs-city'
-      path: '/learn/county-vs-city'
-      fullPath: '/learn/county-vs-city'
-      preLoaderRoute: typeof LearnCountyVsCityRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/learn/county-government': {
-      id: '/learn/county-government'
-      path: '/learn/county-government'
-      fullPath: '/learn/county-government'
-      preLoaderRoute: typeof LearnCountyGovernmentRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/learn/county-fips-codes': {
-      id: '/learn/county-fips-codes'
-      path: '/learn/county-fips-codes'
-      fullPath: '/learn/county-fips-codes'
-      preLoaderRoute: typeof LearnCountyFipsCodesRouteImport
+    '/guides/$slug': {
+      id: '/guides/$slug'
+      path: '/guides/$slug'
+      fullPath: '/guides/$slug'
+      preLoaderRoute: typeof GuidesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
-interface StatesRouteChildren {
-  StatesStateRoute: typeof StatesStateRoute
-}
-
-const StatesRouteChildren: StatesRouteChildren = {
-  StatesStateRoute: StatesStateRoute,
-}
-
-const StatesRouteWithChildren =
-  StatesRoute._addFileChildren(StatesRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
-  DataSourcesRoute: DataSourcesRoute,
-  DisclaimerRoute: DisclaimerRoute,
+  ExactAddressRoute: ExactAddressRoute,
   FaqRoute: FaqRoute,
+  IpLocationRoute: IpLocationRoute,
+  MyCoordinatesRoute: MyCoordinatesRoute,
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
-  StatesRoute: StatesRouteWithChildren,
   TermsRoute: TermsRoute,
-  LearnCountyFipsCodesRoute: LearnCountyFipsCodesRoute,
-  LearnCountyGovernmentRoute: LearnCountyGovernmentRoute,
-  LearnCountyVsCityRoute: LearnCountyVsCityRoute,
-  LearnHowCountyDetectionWorksRoute: LearnHowCountyDetectionWorksRoute,
-  LearnWhatIsACountyRoute: LearnWhatIsACountyRoute,
-  LearnZipVsCountyRoute: LearnZipVsCountyRoute,
-  ToolsAddressRoute: ToolsAddressRoute,
-  ToolsCoordinatesRoute: ToolsCoordinatesRoute,
-  ToolsZipRoute: ToolsZipRoute,
+  GuidesSlugRoute: GuidesSlugRoute,
+  GuidesIndexRoute: GuidesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
