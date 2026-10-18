@@ -80,7 +80,7 @@ export function Locator({ focus = "overview", cta = "Show where I am right now" 
             type="button"
             onClick={locate}
             disabled={state === "locating"}
-            className="group relative inline-flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-lg font-bold text-primary-foreground shadow-pin transition hover:scale-[1.02] disabled:opacity-80"
+            className="group relative inline-flex max-w-full items-center gap-3 overflow-hidden rounded-full bg-primary px-8 py-4 text-lg font-bold text-primary-foreground shadow-pin transition hover:scale-[1.02] disabled:opacity-80"
           >
             {state !== "locating" && <span className="absolute inset-0 rounded-full bg-primary animate-radar" aria-hidden />}
             <span className="relative inline-flex items-center gap-3">
@@ -162,7 +162,7 @@ export function Locator({ focus = "overview", cta = "Show where I am right now" 
                   <Row label="Country" value={addr?.country} />
                 </>
               )}
-              <Row label="Accuracy" value={`± ${Math.round(fix.accuracy)} m · ${accuracyLabel(fix.accuracy)}`} copy={false} />
+              <Row label="Estimated accuracy radius" value={`${Math.round(fix.accuracy)} m`} copy={false} />
             </div>
 
             <div className="mt-5 flex flex-wrap gap-2">
