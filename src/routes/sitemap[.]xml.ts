@@ -8,7 +8,7 @@ export const Route = createFileRoute("/sitemap.xml")({
     handlers: {
       GET: async () => {
         const pages: [string, string][] = [
-          ["/", "1.0"], ["/exact-address", "0.9"], ["/ip-location", "0.9"], ["/my-coordinates", "0.9"],
+          ["/", "1.0"], ["/exact-address", "0.9"], ["/ip-location", "0.9"], ["/my-coordinates", "0.9"], ["/what-city-am-i-in", "0.9"], ["/my-zip-code", "0.9"], ["/local-time", "0.8"],
           ["/guides", "0.7"], ...GUIDES.map((g) => [`/guides/${g.slug}`, "0.7"] as [string, string]),
           ["/faq", "0.6"], ["/about", "0.4"], ["/contact", "0.3"], ["/privacy", "0.2"], ["/terms", "0.2"],
         ];

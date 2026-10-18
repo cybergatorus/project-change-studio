@@ -62,11 +62,14 @@ export function RelatedTools({ exclude }: { exclude?: string }) {
     { to: "/exact-address", title: "My exact address", text: "Street number, ZIP code, city and country." },
     { to: "/ip-location", title: "Where am I by IP", text: "See what your IP address reveals about you." },
     { to: "/my-coordinates", title: "My GPS coordinates", text: "Latitude & longitude in DD, DMS and DDM." },
+    { to: "/what-city-am-i-in", title: "What city am I in?", text: "Your current city or town, county and state." },
+    { to: "/my-zip-code", title: "My ZIP code", text: "The ZIP or postal code for where you are now." },
+    { to: "/local-time", title: "Local time where I am", text: "Live clock, time zone and UTC offset." },
   ].filter((t) => t.to !== exclude);
   return (
     <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
       <h2 className="text-2xl font-bold">More location tools</h2>
-      <div className="mt-6 grid gap-4 sm:grid-cols-3">
+      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {tools.map((t) => (
           <a key={t.to} href={t.to} className="group rounded-2xl border border-border bg-card p-6 shadow-card transition hover:-translate-y-0.5 hover:border-primary">
             <h3 className="font-display text-lg font-bold group-hover:text-primary">{t.title}</h3>

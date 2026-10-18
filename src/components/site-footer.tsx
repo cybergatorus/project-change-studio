@@ -20,6 +20,9 @@ export function SiteFooter() {
             <li><Link to="/exact-address" className={cls}>My exact address</Link></li>
             <li><Link to="/ip-location" className={cls}>Where am I by IP</Link></li>
             <li><Link to="/my-coordinates" className={cls}>My GPS coordinates</Link></li>
+            <li><Link to="/what-city-am-i-in" className={cls}>What city am I in?</Link></li>
+            <li><Link to="/my-zip-code" className={cls}>My ZIP code</Link></li>
+            <li><Link to="/local-time" className={cls}>Local time where I am</Link></li>
           </ul>
         </div>
         <div>
