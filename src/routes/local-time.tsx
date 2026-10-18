@@ -11,7 +11,7 @@ const faqs: FaqItem[] = [
   { q: "What time is it where I am right now?", a: "The large clock above shows your current local time, updated every second from your device's clock and time zone setting." },
   { q: "What is my time zone?", a: "Your time zone is shown as an IANA name such as America/New_York, along with its current UTC offset, which already includes daylight saving time if it applies." },
   { q: "Why is the time zone from my IP different?", a: "Your IP time zone is based on where your internet traffic exits. A VPN, proxy or mobile network hub in another region will show a different zone." },
-  { q: "Is my device clock accurate?", a: "Phones and computers sync with internet time servers and are usually accurate to within a fraction of a second. If the time looks wrong, enable automatic date and time in settings." },
+  { q: "Is my device clock accurate?", a: "This page reads your device clock; it does not compare it with an independent time server. Enable automatic date and time and check your time-zone setting if the display looks wrong." },
 ];
 
 export const Route = createFileRoute("/local-time")({
@@ -34,7 +34,7 @@ function Page() {
     <>
       <Breadcrumbs items={[{ name: "Local Time" }]} />
       <PageHero eyebrow="Local time" title={<>What time is it <span className="text-primary">where I am?</span></>}>
-        <p>Your exact local time, date and time zone right now — no permission needed.</p>
+        <p>Your device's current time, date and time zone — no location permission needed.</p>
       </PageHero>
       <section className="px-4 py-12 sm:px-6"><LocalTime /></section>
       <Section>
@@ -52,11 +52,26 @@ function Page() {
         </p>
         <h2>Using time zones to spot a VPN</h2>
         <p>
-          Your device keeps your real time zone even when a VPN changes your IP. If the "time zone from your IP" doesn't
-          match your device, your IP location is being masked. Run the full check on{" "}
+          A VPN normally does not change your device's configured time zone. A mismatch with the IP time zone is a
+          clue, not proof of a VPN: travel, manual settings, mobile routing and outdated databases can also cause it.
+          Matching zones do not prove that a VPN is absent. Compare the results on{" "}
           <Link to="/ip-location">where am I right now by IP</Link>.
         </p>
         <p>Want to know where you are, not just what time it is? Use the <Link to="/">where am I right now</Link> locator.</p>
+        <h2>Wrong time after travelling? Check two separate settings</h2>
+        <p>Automatic date and time controls the underlying clock. Automatic time zone selects which regional rules
+          apply to that clock. One can be correct while the other is wrong. Enable both in your device settings,
+          reconnect to the internet and check the named zone on this page. A manually selected home zone may remain
+          unchanged after you cross a border.</p>
+        <h2>Daylight saving time and future meetings</h2>
+        <p>The UTC offset shown here applies now, not necessarily to a future date. Some regions change their clocks
+          seasonally and others do not; countries can also change their rules. For a future call, enter the date and
+          destination's named time zone in a calendar rather than adding today's offset by hand. Confirm the displayed
+          local date as well as the hour when arranging a meeting across continents.</p>
+        <h2>Does this prove where I am?</h2>
+        <p>No. A browser can report a manually configured zone even when you are somewhere else. The clock does not
+          request GPS or establish a physical location. Use the device locator with permission for coordinates, and
+          treat the IP zone only as a network-based estimate.</p>
       </Section>
       <FaqSection faqs={faqs} />
       <RelatedTools exclude={PATH} />
