@@ -1,29 +1,40 @@
-# Welcome to your Lovable project
+# lovable-project
 
-This project was built with [Lovable](https://lovable.dev).
+A web application built with React, Vite, TanStack Start / Router, Tailwind CSS, and Cloudflare Wrangler.
 
-## Build with Lovable
+## Features
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+- **React 19 & Vite** for rapid development and bundling
+- **TanStack Start & TanStack Router** for routing and SSR/fullstack capabilities
+- **Tailwind CSS & Radix UI** for modern styling and accessible component primitives
+- **Cloudflare Wrangler** deployment support
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+## Getting Started
 
-## Development
+### Prerequisites
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+- [Node.js](https://nodejs.org/) (v18+) or [Bun](https://bun.sh/)
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+### Installation
+
+```bash
+npm install
+# or
+bun install
 ```
 
-## Built with
+### Running Locally
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+```bash
+npm run dev
+# or
+bun run dev
+```
+
+### Building for Production
+
+```bash
+npm run build
+# or
+bun run build
+```
