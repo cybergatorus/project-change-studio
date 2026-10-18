@@ -1,14 +1,14 @@
+# WhatCountyIAmIn.com — robots.txt
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Major crawlers explicitly allowed
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: *
-Allow: /
+# Sitemap
+Sitemap: https://whatcountyiamin.com/sitemap.xml

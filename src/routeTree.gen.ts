@@ -9,38 +9,352 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as StatesRouteImport } from './routes/states'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as DisclaimerRouteImport } from './routes/disclaimer'
+import { Route as DataSourcesRouteImport } from './routes/data-sources'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ToolsZipRouteImport } from './routes/tools.zip'
+import { Route as ToolsCoordinatesRouteImport } from './routes/tools.coordinates'
+import { Route as ToolsAddressRouteImport } from './routes/tools.address'
+import { Route as StatesStateRouteImport } from './routes/states.$state'
+import { Route as LearnZipVsCountyRouteImport } from './routes/learn.zip-vs-county'
+import { Route as LearnWhatIsACountyRouteImport } from './routes/learn.what-is-a-county'
+import { Route as LearnHowCountyDetectionWorksRouteImport } from './routes/learn.how-county-detection-works'
+import { Route as LearnCountyVsCityRouteImport } from './routes/learn.county-vs-city'
+import { Route as LearnCountyGovernmentRouteImport } from './routes/learn.county-government'
+import { Route as LearnCountyFipsCodesRouteImport } from './routes/learn.county-fips-codes'
 
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StatesRoute = StatesRouteImport.update({
+  id: '/states',
+  path: '/states',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DisclaimerRoute = DisclaimerRouteImport.update({
+  id: '/disclaimer',
+  path: '/disclaimer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DataSourcesRoute = DataSourcesRouteImport.update({
+  id: '/data-sources',
+  path: '/data-sources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ToolsZipRoute = ToolsZipRouteImport.update({
+  id: '/tools/zip',
+  path: '/tools/zip',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsCoordinatesRoute = ToolsCoordinatesRouteImport.update({
+  id: '/tools/coordinates',
+  path: '/tools/coordinates',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsAddressRoute = ToolsAddressRouteImport.update({
+  id: '/tools/address',
+  path: '/tools/address',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StatesStateRoute = StatesStateRouteImport.update({
+  id: '/$state',
+  path: '/$state',
+  getParentRoute: () => StatesRoute,
+} as any)
+const LearnZipVsCountyRoute = LearnZipVsCountyRouteImport.update({
+  id: '/learn/zip-vs-county',
+  path: '/learn/zip-vs-county',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnWhatIsACountyRoute = LearnWhatIsACountyRouteImport.update({
+  id: '/learn/what-is-a-county',
+  path: '/learn/what-is-a-county',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnHowCountyDetectionWorksRoute =
+  LearnHowCountyDetectionWorksRouteImport.update({
+    id: '/learn/how-county-detection-works',
+    path: '/learn/how-county-detection-works',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LearnCountyVsCityRoute = LearnCountyVsCityRouteImport.update({
+  id: '/learn/county-vs-city',
+  path: '/learn/county-vs-city',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnCountyGovernmentRoute = LearnCountyGovernmentRouteImport.update({
+  id: '/learn/county-government',
+  path: '/learn/county-government',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnCountyFipsCodesRoute = LearnCountyFipsCodesRouteImport.update({
+  id: '/learn/county-fips-codes',
+  path: '/learn/county-fips-codes',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/data-sources': typeof DataSourcesRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/faq': typeof FaqRoute
+  '/privacy': typeof PrivacyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/states': typeof StatesRouteWithChildren
+  '/terms': typeof TermsRoute
+  '/learn/county-fips-codes': typeof LearnCountyFipsCodesRoute
+  '/learn/county-government': typeof LearnCountyGovernmentRoute
+  '/learn/county-vs-city': typeof LearnCountyVsCityRoute
+  '/learn/how-county-detection-works': typeof LearnHowCountyDetectionWorksRoute
+  '/learn/what-is-a-county': typeof LearnWhatIsACountyRoute
+  '/learn/zip-vs-county': typeof LearnZipVsCountyRoute
+  '/states/$state': typeof StatesStateRoute
+  '/tools/address': typeof ToolsAddressRoute
+  '/tools/coordinates': typeof ToolsCoordinatesRoute
+  '/tools/zip': typeof ToolsZipRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/data-sources': typeof DataSourcesRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/faq': typeof FaqRoute
+  '/privacy': typeof PrivacyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/states': typeof StatesRouteWithChildren
+  '/terms': typeof TermsRoute
+  '/learn/county-fips-codes': typeof LearnCountyFipsCodesRoute
+  '/learn/county-government': typeof LearnCountyGovernmentRoute
+  '/learn/county-vs-city': typeof LearnCountyVsCityRoute
+  '/learn/how-county-detection-works': typeof LearnHowCountyDetectionWorksRoute
+  '/learn/what-is-a-county': typeof LearnWhatIsACountyRoute
+  '/learn/zip-vs-county': typeof LearnZipVsCountyRoute
+  '/states/$state': typeof StatesStateRoute
+  '/tools/address': typeof ToolsAddressRoute
+  '/tools/coordinates': typeof ToolsCoordinatesRoute
+  '/tools/zip': typeof ToolsZipRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/data-sources': typeof DataSourcesRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/faq': typeof FaqRoute
+  '/privacy': typeof PrivacyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/states': typeof StatesRouteWithChildren
+  '/terms': typeof TermsRoute
+  '/learn/county-fips-codes': typeof LearnCountyFipsCodesRoute
+  '/learn/county-government': typeof LearnCountyGovernmentRoute
+  '/learn/county-vs-city': typeof LearnCountyVsCityRoute
+  '/learn/how-county-detection-works': typeof LearnHowCountyDetectionWorksRoute
+  '/learn/what-is-a-county': typeof LearnWhatIsACountyRoute
+  '/learn/zip-vs-county': typeof LearnZipVsCountyRoute
+  '/states/$state': typeof StatesStateRoute
+  '/tools/address': typeof ToolsAddressRoute
+  '/tools/coordinates': typeof ToolsCoordinatesRoute
+  '/tools/zip': typeof ToolsZipRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/data-sources'
+    | '/disclaimer'
+    | '/faq'
+    | '/privacy'
+    | '/sitemap.xml'
+    | '/states'
+    | '/terms'
+    | '/learn/county-fips-codes'
+    | '/learn/county-government'
+    | '/learn/county-vs-city'
+    | '/learn/how-county-detection-works'
+    | '/learn/what-is-a-county'
+    | '/learn/zip-vs-county'
+    | '/states/$state'
+    | '/tools/address'
+    | '/tools/coordinates'
+    | '/tools/zip'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/data-sources'
+    | '/disclaimer'
+    | '/faq'
+    | '/privacy'
+    | '/sitemap.xml'
+    | '/states'
+    | '/terms'
+    | '/learn/county-fips-codes'
+    | '/learn/county-government'
+    | '/learn/county-vs-city'
+    | '/learn/how-county-detection-works'
+    | '/learn/what-is-a-county'
+    | '/learn/zip-vs-county'
+    | '/states/$state'
+    | '/tools/address'
+    | '/tools/coordinates'
+    | '/tools/zip'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/data-sources'
+    | '/disclaimer'
+    | '/faq'
+    | '/privacy'
+    | '/sitemap.xml'
+    | '/states'
+    | '/terms'
+    | '/learn/county-fips-codes'
+    | '/learn/county-government'
+    | '/learn/county-vs-city'
+    | '/learn/how-county-detection-works'
+    | '/learn/what-is-a-county'
+    | '/learn/zip-vs-county'
+    | '/states/$state'
+    | '/tools/address'
+    | '/tools/coordinates'
+    | '/tools/zip'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
+  DataSourcesRoute: typeof DataSourcesRoute
+  DisclaimerRoute: typeof DisclaimerRoute
+  FaqRoute: typeof FaqRoute
+  PrivacyRoute: typeof PrivacyRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  StatesRoute: typeof StatesRouteWithChildren
+  TermsRoute: typeof TermsRoute
+  LearnCountyFipsCodesRoute: typeof LearnCountyFipsCodesRoute
+  LearnCountyGovernmentRoute: typeof LearnCountyGovernmentRoute
+  LearnCountyVsCityRoute: typeof LearnCountyVsCityRoute
+  LearnHowCountyDetectionWorksRoute: typeof LearnHowCountyDetectionWorksRoute
+  LearnWhatIsACountyRoute: typeof LearnWhatIsACountyRoute
+  LearnZipVsCountyRoute: typeof LearnZipVsCountyRoute
+  ToolsAddressRoute: typeof ToolsAddressRoute
+  ToolsCoordinatesRoute: typeof ToolsCoordinatesRoute
+  ToolsZipRoute: typeof ToolsZipRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/states': {
+      id: '/states'
+      path: '/states'
+      fullPath: '/states'
+      preLoaderRoute: typeof StatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/disclaimer': {
+      id: '/disclaimer'
+      path: '/disclaimer'
+      fullPath: '/disclaimer'
+      preLoaderRoute: typeof DisclaimerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/data-sources': {
+      id: '/data-sources'
+      path: '/data-sources'
+      fullPath: '/data-sources'
+      preLoaderRoute: typeof DataSourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +362,110 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tools/zip': {
+      id: '/tools/zip'
+      path: '/tools/zip'
+      fullPath: '/tools/zip'
+      preLoaderRoute: typeof ToolsZipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/coordinates': {
+      id: '/tools/coordinates'
+      path: '/tools/coordinates'
+      fullPath: '/tools/coordinates'
+      preLoaderRoute: typeof ToolsCoordinatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/address': {
+      id: '/tools/address'
+      path: '/tools/address'
+      fullPath: '/tools/address'
+      preLoaderRoute: typeof ToolsAddressRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/states/$state': {
+      id: '/states/$state'
+      path: '/$state'
+      fullPath: '/states/$state'
+      preLoaderRoute: typeof StatesStateRouteImport
+      parentRoute: typeof StatesRoute
+    }
+    '/learn/zip-vs-county': {
+      id: '/learn/zip-vs-county'
+      path: '/learn/zip-vs-county'
+      fullPath: '/learn/zip-vs-county'
+      preLoaderRoute: typeof LearnZipVsCountyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn/what-is-a-county': {
+      id: '/learn/what-is-a-county'
+      path: '/learn/what-is-a-county'
+      fullPath: '/learn/what-is-a-county'
+      preLoaderRoute: typeof LearnWhatIsACountyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn/how-county-detection-works': {
+      id: '/learn/how-county-detection-works'
+      path: '/learn/how-county-detection-works'
+      fullPath: '/learn/how-county-detection-works'
+      preLoaderRoute: typeof LearnHowCountyDetectionWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn/county-vs-city': {
+      id: '/learn/county-vs-city'
+      path: '/learn/county-vs-city'
+      fullPath: '/learn/county-vs-city'
+      preLoaderRoute: typeof LearnCountyVsCityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn/county-government': {
+      id: '/learn/county-government'
+      path: '/learn/county-government'
+      fullPath: '/learn/county-government'
+      preLoaderRoute: typeof LearnCountyGovernmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn/county-fips-codes': {
+      id: '/learn/county-fips-codes'
+      path: '/learn/county-fips-codes'
+      fullPath: '/learn/county-fips-codes'
+      preLoaderRoute: typeof LearnCountyFipsCodesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface StatesRouteChildren {
+  StatesStateRoute: typeof StatesStateRoute
+}
+
+const StatesRouteChildren: StatesRouteChildren = {
+  StatesStateRoute: StatesStateRoute,
+}
+
+const StatesRouteWithChildren =
+  StatesRoute._addFileChildren(StatesRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  DataSourcesRoute: DataSourcesRoute,
+  DisclaimerRoute: DisclaimerRoute,
+  FaqRoute: FaqRoute,
+  PrivacyRoute: PrivacyRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  StatesRoute: StatesRouteWithChildren,
+  TermsRoute: TermsRoute,
+  LearnCountyFipsCodesRoute: LearnCountyFipsCodesRoute,
+  LearnCountyGovernmentRoute: LearnCountyGovernmentRoute,
+  LearnCountyVsCityRoute: LearnCountyVsCityRoute,
+  LearnHowCountyDetectionWorksRoute: LearnHowCountyDetectionWorksRoute,
+  LearnWhatIsACountyRoute: LearnWhatIsACountyRoute,
+  LearnZipVsCountyRoute: LearnZipVsCountyRoute,
+  ToolsAddressRoute: ToolsAddressRoute,
+  ToolsCoordinatesRoute: ToolsCoordinatesRoute,
+  ToolsZipRoute: ToolsZipRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
