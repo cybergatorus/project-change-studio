@@ -26,7 +26,7 @@ export function SiteFooter() {
           <h2 className="text-sm font-semibold uppercase tracking-widest">Guides</h2>
           <ul className="mt-4 space-y-2.5">
             {GUIDES.map((g) => (
-              <li key={g.slug}><a href={`/guides/${g.slug}`} className={cls}>{g.short}</a></li>
+              <li key={g.slug}><Link to="/guides/$slug" params={{ slug: g.slug }} className={cls}>{g.short}</Link></li>
             ))}
           </ul>
         </div>
