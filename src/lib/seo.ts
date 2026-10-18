@@ -15,7 +15,7 @@ export function pageHead({
   description,
   type = "website",
   schemas = [],
-  image = OG_IMAGE,
+  image,
 }: {
   image?: string;
   path: string;
@@ -25,6 +25,12 @@ export function pageHead({
   schemas?: unknown[];
 }) {
   const url = abs(path);
+  const shareImage = image?.startsWith("https://") ? image : undefined;
+  const mainEntity = schemas.find((schema) => {
+    if (!schema || typeof schema !== "object") return false;
+    return "@type" in schema && ["WebApplication", "Article"].includes(String(schema["@type"]));
+  });
+  const entityId = mainEntity && typeof mainEntity === "object" && "@id" in mainEntity ? mainEntity["@id"] : undefined;
   const webPage = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -35,7 +41,8 @@ export function pageHead({
     inLanguage: "en",
     isPartOf: { "@id": `${SITE_URL}/#website` },
     about: { "@type": "Thing", name: "Current location" },
-    primaryImageOfPage: { "@type": "ImageObject", url: image },
+    ...(shareImage ? { primaryImageOfPage: { "@type": "ImageObject", url: shareImage } } : {}),
+    ...(entityId ? { mainEntity: { "@id": entityId } } : {}),
     datePublished: "2026-10-18",
     dateModified: UPDATED,
     speakable: { "@type": "SpeakableSpecification", cssSelector: ["h1", "[data-speakable]"] },
@@ -48,13 +55,15 @@ export function pageHead({
       { property: "og:description", content: description },
       { property: "og:url", content: url },
       { property: "og:type", content: type },
-      { property: "og:image", content: image },
-      { property: "og:image:width", content: "1200" },
-      { property: "og:image:height", content: image === OG_IMAGE ? "630" : "640" },
-      { name: "twitter:card", content: "summary_large_image" },
+      ...(shareImage ? [
+        { property: "og:image", content: shareImage },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: shareImage === OG_IMAGE ? "630" : "640" },
+      ] : []),
+      { name: "twitter:card", content: shareImage ? "summary_large_image" : "summary" },
       { name: "twitter:title", content: title },
       { name: "twitter:description", content: description },
-      { name: "twitter:image", content: image },
+      ...(shareImage ? [{ name: "twitter:image", content: shareImage }] : []),
     ],
     links: [{ rel: "canonical", href: url }],
     scripts: [webPage, ...schemas].map(ld),
