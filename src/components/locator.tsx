@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Check, Copy, Crosshair, ExternalLink, Loader2, MapPin, Navigation, Share2 } from "lucide-react";
 import {
-  accuracyLabel, getGpsFix, mapEmbedUrl, reverseGeocode, shortAddress, toDdm, toDms,
+  getGpsFix, mapEmbedUrl, reverseGeocode, shortAddress, toDdm, toDms,
   type AddressInfo, type GpsFix,
 } from "@/lib/geo";
 
