@@ -15,7 +15,9 @@ export function pageHead({
   description,
   type = "website",
   schemas = [],
+  image = OG_IMAGE,
 }: {
+  image?: string;
   path: string;
   title: string;
   description: string;
@@ -33,7 +35,7 @@ export function pageHead({
     inLanguage: "en",
     isPartOf: { "@id": `${SITE_URL}/#website` },
     about: { "@type": "Thing", name: "Current location" },
-    primaryImageOfPage: { "@type": "ImageObject", url: OG_IMAGE, width: 1200, height: 630 },
+    primaryImageOfPage: { "@type": "ImageObject", url: image },
     datePublished: "2026-10-18",
     dateModified: UPDATED,
     speakable: { "@type": "SpeakableSpecification", cssSelector: ["h1", "[data-speakable]"] },
@@ -46,13 +48,13 @@ export function pageHead({
       { property: "og:description", content: description },
       { property: "og:url", content: url },
       { property: "og:type", content: type },
-      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image", content: image },
       { property: "og:image:width", content: "1200" },
-      { property: "og:image:height", content: "630" },
+      { property: "og:image:height", content: image === OG_IMAGE ? "630" : "640" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: title },
       { name: "twitter:description", content: description },
-      { name: "twitter:image", content: OG_IMAGE },
+      { name: "twitter:image", content: image },
     ],
     links: [{ rel: "canonical", href: url }],
     scripts: [webPage, ...schemas].map(ld),

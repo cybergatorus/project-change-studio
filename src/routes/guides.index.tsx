@@ -30,10 +30,13 @@ function Page() {
       </PageHero>
       <section className="mx-auto grid max-w-5xl gap-5 px-4 py-12 sm:grid-cols-2 sm:px-6">
         {GUIDES.map((g) => (
-          <Link key={g.slug} to="/guides/$slug" params={{ slug: g.slug }} className="group rounded-2xl border border-border bg-card p-6 shadow-card hover:border-primary">
+          <Link key={g.slug} to="/guides/$slug" params={{ slug: g.slug }} className="group overflow-hidden rounded-2xl border border-border bg-card shadow-card hover:border-primary">
+            <img src={g.image} alt={g.imageAlt} width={1200} height={640} loading="lazy" className="aspect-[15/8] w-full object-cover" />
+            <div className="p-6">
             <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{g.readMins} min read</p>
             <h2 className="mt-2 font-display text-xl font-bold group-hover:text-primary">{g.title}</h2>
             <p className="mt-2 text-sm text-muted-foreground">{g.description}</p>
+            </div>
           </Link>
         ))}
       </section>

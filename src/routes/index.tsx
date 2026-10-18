@@ -220,9 +220,12 @@ function Home() {
         <h2 className="text-2xl font-bold">Location guides</h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {GUIDES.map((g) => (
-            <Link key={g.slug} to="/guides/$slug" params={{ slug: g.slug }} className="group rounded-2xl border border-border bg-card p-5 shadow-card hover:border-primary">
-              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{g.readMins} min read</p>
-              <h3 className="mt-2 font-display font-bold group-hover:text-primary">{g.title}</h3>
+            <Link key={g.slug} to="/guides/$slug" params={{ slug: g.slug }} className="group overflow-hidden rounded-2xl border border-border bg-card shadow-card hover:border-primary">
+              <img src={g.image} alt={g.imageAlt} width={1200} height={640} loading="lazy" className="aspect-[15/8] w-full object-cover" />
+              <div className="p-5">
+                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{g.readMins} min read</p>
+                <h3 className="mt-2 font-display font-bold group-hover:text-primary">{g.title}</h3>
+              </div>
             </Link>
           ))}
         </div>
