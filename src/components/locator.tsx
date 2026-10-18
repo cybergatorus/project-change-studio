@@ -89,7 +89,7 @@ export function Locator({ focus = "overview", cta = "Show where I am right now" 
             </span>
           </button>
           <p className="mt-4 text-sm text-muted-foreground">
-            Your browser will ask permission. Your location never leaves your device except to look up the street address.
+            Location permission is required. Coordinates go to OpenStreetMap services for address lookup and map display.
           </p>
           {state === "error" && (
             <div role="alert" className="mt-5 max-w-xl rounded-xl border border-destructive/40 bg-destructive/5 px-4 py-3 text-sm text-destructive">

@@ -21,7 +21,7 @@ export const Route = createFileRoute("/local-time")({
       title: TITLE,
       description: DESC,
       schemas: [
-        webAppLd({ path: PATH, name: "Local Time Where I Am", description: DESC, features: ["Live local clock", "Time zone", "UTC offset", "IP time zone comparison"] }),
+        webAppLd({ path: PATH, name: "Local Time Where I Am", description: DESC, locationAccess: "none", features: ["Device clock updated every second", "Configured time zone", "UTC offset", "IP time zone comparison"] }),
         breadcrumbLd([{ name: "Local Time", path: PATH }]),
         faqLd(faqs, PATH),
       ],

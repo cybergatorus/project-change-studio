@@ -6,9 +6,10 @@ export const Route = createFileRoute("/about")({
   head: () =>
     pageHead({
       path: "/about",
-      title: "About Where Am I Right Now — Free, Private Location Finder",
+      pageType: "AboutPage",
+      title: "About Where Am I Right Now — How the Location Finder Works",
       description: "Why we built Where Am I Right Now: a fast, private, ad-light way to see where you are right now, powered by your device and OpenStreetMap.",
-      schemas: [breadcrumbLd([{ name: "About", path: "/about" }]), { "@context": "https://schema.org", "@type": "AboutPage", name: "About Where Am I Right Now" }],
+      schemas: [breadcrumbLd([{ name: "About", path: "/about" }])],
     }),
   component: () => (
     <>

@@ -14,6 +14,7 @@ export function pageHead({
   title,
   description,
   type = "website",
+  pageType = "WebPage",
   schemas = [],
   image,
 }: {
@@ -22,18 +23,19 @@ export function pageHead({
   title: string;
   description: string;
   type?: "website" | "article";
+  pageType?: "WebPage" | "AboutPage" | "ContactPage" | "CollectionPage";
   schemas?: unknown[];
 }) {
   const url = abs(path);
   const shareImage = image?.startsWith("https://") ? image : undefined;
   const mainEntity = schemas.find((schema) => {
     if (!schema || typeof schema !== "object") return false;
-    return "@type" in schema && ["WebApplication", "Article"].includes(String(schema["@type"]));
+    return "@type" in schema && ["WebApplication", "Article", "ItemList"].includes(String(schema["@type"]));
   });
   const entityId = mainEntity && typeof mainEntity === "object" && "@id" in mainEntity ? mainEntity["@id"] : undefined;
   const webPage = {
     "@context": "https://schema.org",
-    "@type": "WebPage",
+    "@type": pageType,
     "@id": `${url}#webpage`,
     url,
     name: title,
@@ -43,8 +45,6 @@ export function pageHead({
     about: { "@type": "Thing", name: "Current location" },
     ...(shareImage ? { primaryImageOfPage: { "@type": "ImageObject", url: shareImage } } : {}),
     ...(entityId ? { mainEntity: { "@id": entityId } } : {}),
-    datePublished: "2026-10-18",
-    dateModified: UPDATED,
     speakable: { "@type": "SpeakableSpecification", cssSelector: ["h1", "[data-speakable]"] },
   };
   return {
@@ -96,7 +96,7 @@ export function faqLd(faqs: FaqItem[], path: string) {
   };
 }
 
-export function webAppLd({ path, name, description, features }: { path: string; name: string; description: string; features: string[] }) {
+export function webAppLd({ path, name, description, features, locationAccess = "required" }: { path: string; name: string; description: string; features: string[]; locationAccess?: "required" | "optional" | "none" }) {
   return {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -106,7 +106,9 @@ export function webAppLd({ path, name, description, features }: { path: string; 
     description,
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Any (web browser)",
-    browserRequirements: "Requires JavaScript and HTML5 Geolocation",
+    browserRequirements: locationAccess === "required"
+      ? "Requires JavaScript, a secure context and browser location permission"
+      : locationAccess === "optional" ? "Requires JavaScript; browser location permission is optional" : "Requires JavaScript",
     isAccessibleForFree: true,
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     featureList: features,
@@ -138,7 +140,6 @@ export function howToLd({ path, name, description, steps }: { path: string; name
     "@id": `${abs(path)}#howto`,
     name,
     description,
-    totalTime: "PT1M",
     tool: [{ "@type": "HowToTool", name: "A phone or computer with a web browser" }],
     step: steps.map((s, i) => ({ "@type": "HowToStep", position: i + 1, name: s.name, text: s.text })),
   };

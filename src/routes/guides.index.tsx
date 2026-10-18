@@ -7,6 +7,7 @@ export const Route = createFileRoute("/guides/")({
   head: () =>
     pageHead({
       path: "/guides",
+      pageType: "CollectionPage",
       title: "Location Guides — GPS, IP & Location Services Explained",
       description: "Clear guides on how location detection works, fixing a wrong location, enabling location services, sharing your location and what your IP reveals.",
       schemas: [
@@ -14,6 +15,7 @@ export const Route = createFileRoute("/guides/")({
         {
           "@context": "https://schema.org",
           "@type": "ItemList",
+          "@id": `${abs("/guides")}#guides`,
           itemListElement: GUIDES.map((g, i) => ({ "@type": "ListItem", position: i + 1, url: abs(`/guides/${g.slug}`), name: g.title })),
         },
       ],
