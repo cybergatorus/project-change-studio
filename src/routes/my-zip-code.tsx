@@ -5,7 +5,7 @@ import { breadcrumbLd, faqLd, pageHead, webAppLd, type FaqItem } from "@/lib/seo
 
 const PATH = "/my-zip-code";
 const TITLE = "Where Am I Right Now ZIP Code? Find My ZIP / Postal Code";
-const DESC = "What's my ZIP code right now? Find the ZIP or postal code for your current location in seconds, plus your city, county and state. Free and accurate.";
+const DESC = "Find a mapped ZIP or postal code near your current device location, with city and region details. Learn how to verify it for mail, deliveries and forms.";
 
 const faqs: FaqItem[] = [
   { q: "What is my ZIP code right now?", a: "Tap “Find my ZIP code” and allow location access. We look up the postal code of the address at your current GPS position." },
@@ -35,7 +35,7 @@ function Page() {
     <>
       <Breadcrumbs items={[{ name: "My ZIP Code" }]} />
       <PageHero eyebrow="ZIP code finder" title={<>Where am I right now: <span className="text-primary">ZIP code</span></>}>
-        <p>Get the ZIP or postal code for exactly where you're standing — ready to copy into any form.</p>
+        <p>Look up the ZIP or postal code mapped near your current location, then verify it for your address.</p>
       </PageHero>
       <section className="px-4 py-12 sm:px-6"><Locator focus="zip" cta="Find my ZIP code" /></section>
       <Section>
@@ -55,17 +55,36 @@ function Page() {
         </p>
         <h2>When you need your ZIP code</h2>
         <ul>
-          <li>Checking out online or at a fuel pump that asks for a billing ZIP.</li>
+          <li>Finding a local postal code while travelling — not replacing your card's billing ZIP.</li>
           <li>Ordering food, groceries or parcel deliveries to a new address.</li>
           <li>Finding local weather, store hours or services.</li>
           <li>Filling in registrations, insurance or job applications.</li>
         </ul>
         <h2>Accuracy tips</h2>
         <p>
-          ZIP boundaries can run down the middle of a street, so a weak GPS fix may return the neighbouring code. Wait
-          for accuracy under ± 20 m, and confirm the pin on the map. For the full address use{" "}
+          A weak device fix or nearby mapped feature may return a different postal code. A small accuracy radius helps,
+          but does not certify the code: confirm the full address and the pin. For the full address use{" "}
           <Link to="/exact-address">my exact address</Link>, or check <Link to="/what-city-am-i-in">what city you're in</Link>.
         </p>
+        <h2>Current postal code versus billing ZIP</h2>
+        <p>A fuel pump or payment form asking for a billing ZIP normally means the postal code registered with your
+          card issuer, not where you are standing. Entering this tool's result while travelling can cause a payment
+          check to fail. For a hotel delivery, use the hotel's verified delivery address; for an account or insurance
+          form, use the address that the form actually asks for.</p>
+        <h2>How to verify a code before sending mail</h2>
+        <ol>
+          <li>Confirm the recipient's street, building number, unit and city.</li>
+          <li>Look up that complete address with the destination country's postal service.</li>
+          <li>Use the postal service's spelling and code, including extensions when required.</li>
+          <li>If the address has a PO box or special delivery code, ask the recipient rather than using nearby coordinates.</li>
+        </ol>
+        <p>For US addresses, use <a href="https://tools.usps.com/zip-code-lookup.htm" target="_blank" rel="noopener noreferrer">USPS ZIP Code Lookup</a>.
+          This site uses OpenStreetMap data, not an authoritative postal delivery database, and does not calculate ZIP+4.</p>
+        <h2>Why no postal code appears</h2>
+        <p>The nearest mapped feature may have no postal code, a rural location may not have a street address, or the
+          address service may be unavailable. Some territories do not use postal codes. Do not invent one from a
+          neighbouring result. Copy your coordinates to identify the place, then ask the venue or local postal service
+          for the correct mailing details.</p>
       </Section>
       <FaqSection faqs={faqs} />
       <RelatedTools exclude={PATH} />

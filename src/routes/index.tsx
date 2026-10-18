@@ -7,25 +7,27 @@ import { GUIDES } from "@/lib/guides";
 import { faqLd, howToLd, pageHead, webAppLd, type FaqItem } from "@/lib/seo";
 
 const TITLE = "Where Am I Right Now? See Your Exact Location & Address";
-const DESC = "Where am I right now? Instantly see where you are located right now on a map with your exact street address, ZIP code and GPS coordinates. Free, private, no app needed.";
+const DESC = "Find where you are right now on a map with GPS coordinates, a mapped street address and location accuracy. Compare device and IP location. Free, no account.";
 
 const faqs: FaqItem[] = [
-  { q: "Where am I right now?", a: "Tap “Show where I am right now” at the top of this page and allow location access. You'll instantly see your street address, city, ZIP or postal code, country, GPS coordinates and a live map pin." },
-  { q: "Where am I at right now exactly?", a: "With GPS enabled on a phone, your position is usually accurate to 3–10 metres. The accuracy radius shown under your result tells you exactly how precise the current fix is." },
+  { q: "Where am I right now?", a: "Select “Show where I am right now” and allow location access. The tool requests your device's current coordinates, displays a map pin and estimated accuracy, and looks up an address. Street numbers and postal codes appear only when available in the map data." },
+  { q: "Where am I at right now exactly?", a: "Your device supplies an estimated position, not a guaranteed exact point. Check the accuracy radius and compare the pin with your surroundings. A small radius can help identify a street, but it does not verify a building entrance, apartment, floor or property boundary." },
   { q: "How do I find where I am right now on my phone?", a: "Open this page in Safari, Chrome or any mobile browser, tap the orange button and choose Allow. Make sure Location Services and Precise Location are switched on in your phone's settings." },
-  { q: "Can I find where I am right now without GPS?", a: "Yes. Laptops and desktops use nearby Wi-Fi networks to locate you to within about 15–50 metres. If you deny permission entirely, you can still see your approximate city on our IP location page." },
-  { q: "Is this location tool free and private?", a: "It's completely free with no sign-up or app. Your coordinates are processed in your browser; we don't store or sell your location. Only the coordinates are sent to OpenStreetMap to look up the street address." },
-  { q: "Why is my location showing the wrong place?", a: "The most common causes are an active VPN, Precise Location being turned off, being indoors with weak GPS, or the browser falling back to IP location. See our guide on why your location is wrong for nine quick fixes." },
+  { q: "Can I find where I am right now without GPS?", a: "Yes. Browser geolocation may use Wi-Fi or other signals when a GPS receiver is unavailable, but accuracy varies. Permission is still required. Without permission, the separate IP location tool can show an approximate network location, not your street address." },
+  { q: "Is this location tool free and private?", a: "The tool is free and needs no account. We do not save a location history. Coordinates are sent to OpenStreetMap's Nominatim service for address lookup and included in the embedded map request. IP lookups contact external providers. Sharing a map link discloses its coordinates to the recipient." },
+  { q: "Why is my location showing the wrong place?", a: "Check whether you are viewing device location or IP location. A VPN can change the IP result; device location can be inaccurate when precise access is disabled, GPS reception is poor or the device's positioning data is coarse. Compare the accuracy radius and refresh after checking permissions." },
   { q: "Does it work on iPhone, Android and computers?", a: "Yes — it works in Safari, Chrome, Firefox, Edge and Samsung Internet on any phone, tablet, Mac, Windows PC or Chromebook. No download is required." },
-  { q: "Does a VPN change where I am right now?", a: "A VPN changes your IP location only. Our main locator uses your device's GPS and Wi-Fi, so it still shows where you really are even when a VPN is on." },
+  { q: "Does a VPN change where I am right now?", a: "A VPN normally changes the IP-based result to its exit server's location. Device geolocation can still show your physical position with permission, but accuracy depends on the device and settings. An IP lookup cannot reliably uncover the physical address behind a VPN or proxy." },
   { q: "Can I share my current location with someone?", a: "Yes. After your location appears, tap “Share location” to send a Google Maps link by text message, WhatsApp, email or any app on your device." },
-  { q: "Does this work in every country?", a: "Yes. Maps and addresses come from OpenStreetMap, which covers every country. Address detail is best in cities and may be less complete in remote rural areas." },
+  { q: "Does this work in every country?", a: "OpenStreetMap has worldwide coverage, but address detail and service availability vary. In rural areas, at sea or where mapping is incomplete, coordinates may be more useful than an address. Location permissions and internet access are still needed." },
+  { q: "Will the map track me as I move?", a: "No. This tool displays a single location reading. Select Refresh after moving to request another reading. A shared Google Maps link points to the coordinates captured at that moment; it is not live location sharing." },
+  { q: "Why is my exact address or ZIP code missing?", a: "The address comes from nearby mapped features rather than a postal authority. Some features have no street number or postal code, and a nearby building can be returned instead of the one you are in. Verify important addresses using signs, the venue or your postal service." },
 ];
 
 const steps = [
   { name: "Tap the button", text: "Tap “Show where I am right now” at the top of the page." },
   { name: "Allow location", text: "Choose Allow when your browser asks to share your location." },
-  { name: "See your location", text: "Read your exact address, coordinates and accuracy, and see the pin on the map." },
+  { name: "Check your result", text: "Read your coordinates and estimated accuracy, then compare the map pin and mapped address with nearby streets and signs." },
   { name: "Share or copy", text: "Copy any detail or share a Google Maps link with friends or family." },
 ];
 
@@ -40,9 +42,9 @@ export const Route = createFileRoute("/")({
           path: "/",
           name: "Where Am I Right Now — Location Finder",
           description: DESC,
-          features: ["Current location on a live map", "Exact street address lookup", "GPS latitude and longitude", "Location accuracy radius", "IP address location with VPN detection", "Share location link"],
+          features: ["Device location on an interactive map", "Mapped street address lookup when available", "Latitude and longitude", "Estimated location accuracy radius", "Share a coordinate-based map link"],
         }),
-        howToLd({ path: "/", name: "How to find where you are right now", description: "Find your current location and exact address in under a minute.", steps }),
+        howToLd({ path: "/", name: "How to find where you are right now", description: "Request your device location, check its estimated accuracy and share a map link.", steps }),
         faqLd(faqs, "/"),
       ],
     }),
@@ -50,21 +52,30 @@ export const Route = createFileRoute("/")({
 });
 
 const methods = [
-  { icon: Smartphone, title: "GPS", text: "Satellite positioning on phones — accurate to a few metres outdoors." },
-  { icon: Wifi, title: "Wi-Fi", text: "Nearby networks pinpoint laptops and indoor phones to 15–50 m." },
-  { icon: Compass, title: "Cell towers", text: "A fast first guess while GPS warms up — within a few hundred metres." },
-  { icon: Globe2, title: "IP address", text: "No permission needed, but only city-level — often 5–50 km off." },
+  { icon: Smartphone, title: "GPS", text: "Satellite-based positioning can be precise outdoors; buildings and blocked sky can reduce accuracy." },
+  { icon: Wifi, title: "Wi-Fi", text: "A device's location service may use nearby network information, especially indoors or on a laptop." },
+  { icon: Compass, title: "Cell towers", text: "Mobile-network signals can provide a coarse estimate when other signals are limited." },
+  { icon: Globe2, title: "IP address", text: "Our separate IP tool reports a database estimate of your connection, not a verified physical position." },
 ];
 
 function Home() {
   return (
     <>
       <PageHero eyebrow="Live location finder" title={<>Where am I <span className="text-primary">right now?</span></>}>
-        <p>See your current location on a map, with your exact street address and GPS coordinates — in one tap.</p>
+        <p>Find your current coordinates, check your location on a map and see the nearest mapped address. Your browser asks permission first.</p>
       </PageHero>
 
       <section className="relative -mt-2 px-4 py-12 sm:px-6">
         <Locator />
+      </section>
+
+      <section className="mx-auto max-w-5xl border-y border-border px-4 py-7 sm:px-6" aria-labelledby="location-result-guide">
+        <h2 id="location-result-guide" className="text-xl font-bold">A location pin is an estimate — check it before using it</h2>
+        <div className="mt-4 grid gap-6 text-sm text-muted-foreground sm:grid-cols-3">
+          <p><strong className="text-foreground">1. Read the accuracy.</strong> A larger radius means more uncertainty. Extra decimal places do not make a reading more accurate.</p>
+          <p><strong className="text-foreground">2. Verify the address.</strong> Match the street and building number with signs. The map may return a nearby feature instead of your entrance.</p>
+          <p><strong className="text-foreground">3. Refresh after moving.</strong> This is a one-time reading, not continuous tracking. Shared links keep the captured coordinates.</p>
+        </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
@@ -90,22 +101,22 @@ function Home() {
         </ol>
         <p>
           The result shows <strong>where you are at right now</strong> as a human-readable address, raw coordinates and an
-          accuracy radius. If the radius is large, step outside or turn on Wi-Fi and press <em>Refresh</em>. The whole
-          process takes less than ten seconds on most phones.
+          accuracy radius. If the radius is large, move to an open, safe place or turn on Wi-Fi and press <em>Refresh</em>.
+          A request can take up to 20 seconds before this tool times out; address lookup is a separate request and may take longer.
         </p>
 
         <h2>What you'll see when you check your location</h2>
         <p>
-          Most "where am I" tools give you a dot on a map and nothing else. Where Am I Right Now shows everything you
-          might need in one place, so you don't have to switch between apps:
+          Use the result that fits your task. Coordinates describe a point, while the address depends on available map
+          data. Missing fields are not evidence that your device failed to locate you:
         </p>
         <ul>
-          <li><strong>Street address</strong> — house number, street name and neighbourhood, converted from your coordinates.</li>
-          <li><strong>City, state and ZIP or postal code</strong> — handy for forms, deliveries and ride pickups.</li>
+          <li><strong>Mapped street address</strong> — house number, street name and neighbourhood, when the map has those details.</li>
+          <li><strong>City, state and ZIP or postal code</strong> — a starting point to verify before using it for deliveries or official forms.</li>
           <li><strong>Country</strong> — useful when you're travelling near a border.</li>
           <li><strong>GPS coordinates</strong> — latitude and longitude to six decimal places, ready to paste into any map.</li>
-          <li><strong>Accuracy radius</strong> — an honest measure of how precise the current fix is, in metres.</li>
-          <li><strong>Live map</strong> — a zoomable OpenStreetMap view with a pin on your position.</li>
+          <li><strong>Accuracy radius</strong> — your device's estimate of uncertainty in metres, not a guarantee.</li>
+          <li><strong>Interactive map</strong> — a zoomable OpenStreetMap view with a pin on the captured position.</li>
           <li><strong>One-tap sharing</strong> — send a Google Maps link to anyone.</li>
         </ul>
         <p>
@@ -116,18 +127,18 @@ function Home() {
 
         <h2>How accurate is "where am I right now"?</h2>
         <p>
-          Accuracy depends on the device and where you're standing. A modern smartphone outdoors with a clear view of
-          the sky typically lands within <strong>3–10 metres</strong> — close enough to identify the right building.
-          Indoors, phones lean on Wi-Fi and usually stay within <strong>15–50 metres</strong>. A laptop without Wi-Fi
-          switched on, or a browser that has been denied permission, may only know your city.
+          Accuracy depends on your device, its permissions and the available positioning signals. Read the radius in
+          your own result rather than assuming a phone or laptop always achieves a fixed number of metres. The browser
+          defines horizontal accuracy as an estimated radius with a 95% confidence level; it does not identify which
+          sensor produced the reading. Denying permission stops this device lookup rather than silently switching it to IP.
         </p>
         <table>
-          <thead><tr><th>Accuracy shown</th><th>What it means</th><th>Good enough for</th></tr></thead>
+          <thead><tr><th>Radius shown</th><th>How to interpret it</th><th>What to check</th></tr></thead>
           <tbody>
-            <tr><td>Under ± 20 m</td><td>GPS-level fix</td><td>Exact address, meeting points, emergencies</td></tr>
-            <tr><td>± 20 – 100 m</td><td>Wi-Fi or assisted GPS</td><td>Street and neighbourhood</td></tr>
-            <tr><td>± 100 – 1,000 m</td><td>Cell towers</td><td>Rough area, nearby landmarks</td></tr>
-            <tr><td>Over ± 1 km</td><td>IP or coarse location</td><td>City and region only</td></tr>
+            <tr><td>Up to 20 m</td><td>A relatively small estimated area</td><td>Building signs, entrance and side of the street</td></tr>
+            <tr><td>Over 20–100 m</td><td>May include several buildings</td><td>Street and nearby landmarks</td></tr>
+            <tr><td>Over 100–1,000 m</td><td>A broad area, not one address</td><td>Neighbourhood; refresh for a better reading</td></tr>
+            <tr><td>Over 1 km</td><td>Too coarse to pick a street address</td><td>Device permissions and an alternative map app</td></tr>
           </tbody>
         </table>
         <p>
@@ -140,7 +151,7 @@ function Home() {
       <section className="bg-ink py-16 text-ink-foreground">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <h2 className="text-3xl font-bold">How your device knows where you are</h2>
-          <p className="mt-3 max-w-2xl text-ink-foreground/75">Your browser blends up to four signals and reports the best estimate.</p>
+          <p className="mt-3 max-w-2xl text-ink-foreground/75">Your device's location service chooses available signals. This site receives the resulting coordinates, not the underlying sensor data.</p>
           <img src={IMG} alt="GPS satellites, Wi-Fi and cell towers working together to find where you are right now" width={1200} height={640} loading="lazy" className="mt-8 w-full rounded-3xl" />
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {methods.map((m) => (
@@ -167,8 +178,9 @@ function Home() {
         </p>
         <h3>Calling for help</h3>
         <p>
-          Roadside assistance, a taxi company or emergency services will always ask "where are you?". Reading out a
-          verified street address or coordinates is faster and more reliable than describing your surroundings. See{" "}
+          If you need urgent help, call your local emergency number first. Give visible landmarks, road names and travel
+          direction; offer coordinates as additional information if the dispatcher asks. Do not delay a call while waiting
+          for this website or rely on an unverified map address. For non-emergency roadside help, confirm a safe meeting point. See{" "}
           <Link to="/guides/$slug" params={{ slug: "share-your-location-in-an-emergency" }}>how to share your location in an emergency</Link>.
         </p>
         <h3>Rides, deliveries and meet-ups</h3>
@@ -178,8 +190,8 @@ function Home() {
         </p>
         <h3>Filling in forms</h3>
         <p>
-          Hotel check-ins, job applications and online shops often ask for your ZIP or postal code and county. Your
-          location result lists them all, ready to copy.
+          Your current physical location is not necessarily your home, billing or mailing address. Use the required
+          address for hotel, job or shopping forms, and verify postal codes with the local postal authority when they matter.
         </p>
         <h3>Checking your privacy</h3>
         <p>
@@ -189,17 +201,17 @@ function Home() {
 
         <h2>Where am I right now: GPS vs IP location</h2>
         <p>
-          There are two very different answers to "where am I?". <strong>GPS location</strong> comes from your device
-          and is precise to a few metres, but it needs your permission. <strong>IP location</strong> is guessed from
-          your internet connection, needs no permission, and is usually only accurate to your city — or completely
-          wrong if you use a VPN or mobile data that routes through another region. This site uses GPS and Wi-Fi first
-          and shows IP location separately so you always know which answer you're looking at.
+          There are two different answers to "where am I?". <strong>Device location</strong> comes from your browser's
+          location service, requires permission and can be precise when good signals are available. <strong>IP location</strong>
+          {" "}is a database estimate of your internet connection. It may point to an ISP's network or VPN exit server in
+          another region. A static IP is not a verified address, and a changing IP does not mean you moved. Comparing
+          several IP databases can reveal disagreement, but cannot turn their estimates into an exact physical position.
         </p>
 
         <div className="not-prose mt-8 flex gap-4 rounded-2xl border border-border bg-secondary/60 p-5">
           <ShieldCheck className="h-6 w-6 shrink-0 text-success" />
           <p className="!m-0 text-sm !text-secondary-foreground">
-            <strong>Private by design.</strong> We never store your location. Coordinates stay in your browser and are only sent to OpenStreetMap to convert them into an address. No account, no cookies for tracking, no location history.
+            <strong>No saved location history.</strong> Address lookup and map display send coordinates to OpenStreetMap services. IP checks use external providers, and a shared link exposes its coordinates to the recipient. Read our <Link to="/privacy">privacy policy</Link> before sharing a sensitive location.
           </p>
         </div>
 
@@ -216,6 +228,55 @@ function Home() {
           <Link to="/guides/$slug" params={{ slug: "turn-on-location-services" }}>turning on location services</Link>{" "}
           for iPhone, Android, Chrome, Safari, Firefox and Edge.
         </p>
+      </Section>
+
+      <Section>
+        <h2>Location not working? Match the problem to the next step</h2>
+        <h3>The browser says permission was denied</h3>
+        <p>Open this site's permission settings in your browser and allow location. Also check the device's location
+          setting: browser permission alone is not enough if system access is disabled. On iPhone, check Settings →
+          Privacy &amp; Security → Location Services and the entry for your browser or Safari Websites. On Android,
+          check Settings → Location, then the browser's app permissions. Names vary by version. Reload this page and
+          request a new reading. Our <Link to="/guides/$slug" params={{ slug: "turn-on-location-services" }}>location settings guide</Link> covers the steps in more detail.</p>
+        <h3>The location request times out or has a large radius</h3>
+        <p>Keep the page open, enable Wi-Fi, and try again somewhere safe with a clearer view of the sky. A desktop
+          without positioning signals may remain coarse even with permission. If another map app is also wrong, check
+          the device settings; if only this website fails, check site permissions or try a different browser. Repeated
+          refreshes cannot guarantee a better result.</p>
+        <h3>The pin appears, but the address is missing or wrong</h3>
+        <p>Positioning and address lookup are separate. You can still copy coordinates or open Google Maps when
+          address data is unavailable. Nominatim looks up nearby mapped objects, which may be on the other side of a
+          road or lack a house number. Check street signs rather than using a guessed number for a delivery.</p>
+        <h3>The IP page shows another city or country</h3>
+        <p>Look for a VPN, proxy, corporate gateway or mobile-network routing. An IP result describes the public
+          connection seen by that provider. Use the device locator with permission to check your physical position;
+          the IP result is not evidence that your GPS is broken. See <Link to="/guides/$slug" params={{ slug: "find-real-location-behind-vpn" }}>finding your location while using a VPN</Link>.</p>
+
+        <h2>Choose the location detail you actually need</h2>
+        <ul>
+          <li><strong>A pickup or meeting:</strong> use the <Link to="/exact-address">mapped address</Link>, then agree on a visible entrance or landmark.</li>
+          <li><strong>A point in a park or rural area:</strong> copy <Link to="/my-coordinates">latitude and longitude</Link> in that order; confirm the recipient can open the map link.</li>
+          <li><strong>Your current town:</strong> use the <Link to="/what-city-am-i-in">city finder</Link>, remembering that a mapped locality may differ from a legal municipality.</li>
+          <li><strong>A postal code:</strong> check the <Link to="/my-zip-code">ZIP and postal code finder</Link> and verify it with the postal service before mailing.</li>
+          <li><strong>What your internet connection reveals:</strong> use <Link to="/ip-location">IP location</Link>, not the result as proof of residence.</li>
+          <li><strong>Time at your destination:</strong> check <Link to="/local-time">local time and time zone</Link>; device settings and IP-based time zones can differ.</li>
+        </ul>
+
+        <h2>What this tool cannot determine</h2>
+        <p>It cannot locate another person from a phone number, reveal a private home behind a VPN, identify your
+          apartment or floor, or certify a property boundary. It does not provide turn-by-turn navigation, offline maps
+          or continuous live tracking. To share movement rather than a fixed point, use an app with an explicit
+          live-sharing feature and choose who can see it and for how long.</p>
+
+        <h2>Sources and how to verify your result</h2>
+        <p>These references explain the data behind the tool, not a promise of accuracy for every device:</p>
+        <ul>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API" target="_blank" rel="noopener noreferrer">MDN: Geolocation API</a> — browser permissions and device positioning.</li>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/GeolocationCoordinates/accuracy" target="_blank" rel="noopener noreferrer">MDN: location accuracy</a> — what the reported radius means.</li>
+          <li><a href="https://nominatim.org/release-docs/latest/api/Reverse/" target="_blank" rel="noopener noreferrer">Nominatim: reverse geocoding</a> — why the nearest mapped object may not be your actual address.</li>
+        </ul>
+        <p>For an important decision, compare the result with your surroundings, an independent map and the relevant
+          venue or postal authority. For emergencies, follow the dispatcher's instructions instead of relying on this website.</p>
       </Section>
 
       <section className="mx-auto max-w-6xl px-4 py-8 sm:px-6">

@@ -6,16 +6,16 @@ import { breadcrumbLd, faqLd, howToLd, pageHead, webAppLd, type FaqItem } from "
 
 const PATH = "/exact-address";
 const TITLE = "Where Am I Right Now Exact Address? Find My Street Address";
-const DESC = "Find your exact address right now — house number, street, ZIP or postal code, city, county and country — from your device's GPS. Free and instant.";
+const DESC = "Look up a mapped street address near your current device location, with house number, city and postal code when available. Check accuracy before sharing.";
 
 const faqs: FaqItem[] = [
   { q: "How do I find my exact address right now?", a: "Tap “Find my exact address” and allow location access. We convert your GPS coordinates into the nearest mapped street address, including house number and ZIP or postal code." },
   { q: "What is the address of where I am right now?", a: "It's the nearest mapped building to your GPS position. The tool shows it as a short address, a full address and separate fields for street, city, county, state, ZIP and country." },
   { q: "Why is the house number missing or slightly off?", a: "Reverse geocoding returns the nearest address in OpenStreetMap. Some buildings aren't numbered on the map yet, and a few metres of GPS error can select a neighbouring house. Check the pin on the map." },
   { q: "How can I find my ZIP code from my location?", a: "Your ZIP or postal code is listed in the address breakdown. Use the copy button next to it to paste it into a form." },
-  { q: "How do I find my address without GPS?", a: "On a laptop, turning on Wi-Fi is usually enough for street-level accuracy. Without any location permission we can only estimate your city from your IP address, which can't give a street address." },
+  { q: "How do I find my address without GPS?", a: "Browser geolocation can use Wi-Fi and other available signals, but accuracy varies. Location permission is still required. The separate IP lookup cannot reliably provide a street address." },
   { q: "Can I use this address for deliveries or rides?", a: "Yes, but always double-check the map pin. Building entrances, apartment, suite and floor numbers aren't included in map data, so add them yourself." },
-  { q: "What county am I in right now?", a: "The County / District field in the address breakdown shows the county (or the equivalent administrative area in your country) for your current position." },
+  { q: "Does this verify my official mailing address?", a: "No. It returns nearby OpenStreetMap address data, not a certified postal record. Confirm your street number, unit and postal code with the property owner or postal service before using the result for mail or official forms." },
   { q: "Does the exact address work outside the US?", a: "Yes. Addresses come from OpenStreetMap, which covers every country. The fields adapt to local formats — postal codes, provinces, prefectures and so on." },
 ];
 
@@ -47,7 +47,7 @@ function Page() {
     <>
       <Breadcrumbs items={[{ name: "Exact Address" }]} />
       <PageHero eyebrow="Address lookup" title={<>Where am I right now: <span className="text-primary">exact address</span></>}>
-        <p>Get the full street address of the spot you're standing on — down to the house number and ZIP code.</p>
+        <p>Look up the mapped address near your position, with street number and postal code when available. Verify the building and entrance before using it.</p>
       </PageHero>
       <section className="px-4 py-12 sm:px-6"><Locator focus="address" cta="Find my exact address" /></section>
       <Section>
@@ -106,14 +106,23 @@ function Page() {
         <ul>
           <li><strong>Booking a ride or delivery</strong> — give the driver a precise pickup point.</li>
           <li><strong>Roadside breakdowns</strong> — tell your insurer or tow truck exactly where you are.</li>
-          <li><strong>New home or Airbnb</strong> — confirm the official street address and ZIP code.</li>
+          <li><strong>New home or Airbnb</strong> — compare a mapped address with the host's verified mailing address.</li>
           <li><strong>Forms and registrations</strong> — find your county or postal code fast.</li>
-          <li><strong>Emergencies</strong> — read your address out clearly to dispatchers.</li>
+          <li><strong>Emergencies</strong> — call the local emergency number first; confirm landmarks and follow the dispatcher's instructions.</li>
         </ul>
         <p>
           Need raw numbers instead? Use <Link to="/my-coordinates">my GPS coordinates</Link>. Want to know what websites
           can see without permission? Try <Link to="/ip-location">where am I right now by IP</Link>.
         </p>
+        <h2>Why a correct pin can have an incorrect address</h2>
+        <p>The address service finds a nearby mapped object. Its entrance may be on a different road, the building
+          may have several numbers, or the map may omit the feature you are standing on. Coordinates and address data
+          have separate limitations: a small location radius does not certify a house number. Use visible signs and
+          the venue's official address to confirm a pickup or delivery.</p>
+        <h2>What to copy when you have no street address</h2>
+        <p>On a trail, beach or large park, coordinates and a named access point may be more useful than a distant
+          building's address. Send the fixed map link, describe a safe meeting point and make clear if you have moved
+          since the reading. This tool does not show an apartment, floor, gate code or continuous movement.</p>
       </Section>
       <FaqSection faqs={faqs} />
       <RelatedTools exclude={PATH} />

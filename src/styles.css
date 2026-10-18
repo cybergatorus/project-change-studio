@@ -93,7 +93,7 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.025em; }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: 0; }
 }
 
 @utility shadow-pin { box-shadow: var(--shadow-pin); }
@@ -133,7 +133,12 @@
   & ol { list-style: decimal; }
   & strong { color: var(--color-foreground); }
   & a { color: var(--color-primary); text-decoration: underline; text-underline-offset: 3px; }
-  & table { width: 100%; font-size: 0.95rem; margin: 1rem 0 1.5rem; border-collapse: collapse; }
+  & table { display: block; max-width: 100%; overflow-x: auto; font-size: 0.95rem; margin: 1rem 0 1.5rem; border-collapse: collapse; }
   & th, & td { border: 1px solid var(--color-border); padding: 0.6rem 0.8rem; text-align: left; }
   & th { background: var(--color-muted); font-weight: 600; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-radar { animation: none; }
 }

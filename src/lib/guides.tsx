@@ -34,7 +34,7 @@ export const GUIDES: Guide[] = [
     imageAlt: "Smartphone receiving signals from GPS satellites, a Wi-Fi router and a cell tower to find its location",
     takeaways: [
       "Your device blends GPS, Wi-Fi, cell towers and IP to estimate where you are.",
-      "GPS is precise to 3–10 m outdoors; Wi-Fi to 15–50 m indoors; IP only to your city.",
+      "Accuracy varies by device and environment; an IP estimate is not a physical-location fix.",
       "Every location comes with an accuracy radius — always check it.",
       "Websites only receive coordinates after you grant permission.",
     ],
@@ -43,8 +43,8 @@ export const GUIDES: Guide[] = [
         <p>
           When you ask "where am I right now?", your phone or laptop doesn't rely on a single sensor. It combines up to
           four different positioning signals, weighs how trustworthy each one is at that moment, and reports a best
-          estimate along with an <strong>accuracy radius</strong> — the circle within which you are almost certainly
-          standing. Understanding these signals explains why your location is sometimes pinpoint-perfect and other
+          estimate along with an <strong>accuracy radius</strong> — estimated horizontal uncertainty at a 95% confidence
+          level, not a guarantee of the right address. Understanding these signals explains why your location is sometimes precise and other
           times a block or two away.
         </p>
 
@@ -155,7 +155,7 @@ export const GUIDES: Guide[] = [
           <li>Turn on Precise Location (iPhone) or Use precise location (Android).</li>
           <li>Keep Wi-Fi switched on, even if you're not connected to a network.</li>
           <li>Step outside or move near a window for a few seconds.</li>
-          <li>Wait for the accuracy figure to drop, then refresh.</li>
+          <li>Wait briefly, then tap Refresh to request another estimate; this tool does not continuously update.</li>
         </ol>
       </>
     ),
@@ -176,7 +176,7 @@ export const GUIDES: Guide[] = [
     image: imgWrong,
     imageAlt: "Person on a city street whose phone map shows a location pin offset from where they are actually standing",
     takeaways: [
-      "Check the accuracy radius first — it tells you which method your device is using.",
+      "Check the accuracy radius first — it reports uncertainty, not which sensor your device used.",
       "A VPN only changes IP location; GPS-based location ignores it.",
       "Precise Location and Wi-Fi are the two biggest fixes on phones.",
       "If coordinates are right but the address is wrong, the map data is incomplete.",
@@ -191,16 +191,16 @@ export const GUIDES: Guide[] = [
 
         <h2>Step 1: Diagnose with the accuracy radius</h2>
         <p>
-          Run the <a href="/">where am I right now</a> locator and look at the accuracy value. It tells you which
-          positioning method your device is relying on:
+          Run the <a href="/">where am I right now</a> locator and look at the accuracy value. It reports estimated
+          uncertainty, not the positioning method used:
         </p>
         <table>
-          <thead><tr><th>Accuracy shown</th><th>Likely source</th><th>What to do</th></tr></thead>
+          <thead><tr><th>Radius shown</th><th>Interpretation</th><th>What to do</th></tr></thead>
           <tbody>
-            <tr><td>Under ± 20 m</td><td>GPS</td><td>Location is good — check the map data</td></tr>
-            <tr><td>± 20 – 100 m</td><td>Wi-Fi</td><td>Step outside for a GPS fix</td></tr>
-            <tr><td>± 100 m – 3 km</td><td>Cell towers or approximate location</td><td>Enable precise location and Wi-Fi</td></tr>
-            <tr><td>Over ± 3 km</td><td>IP address</td><td>Allow location permission; disable VPN</td></tr>
+            <tr><td>Up to 20 m</td><td>A relatively small estimated area</td><td>Verify the building and mapped address</td></tr>
+            <tr><td>Over 20–100 m</td><td>May include several buildings</td><td>Compare street signs; refresh in a safe open place</td></tr>
+            <tr><td>Over 100 m–3 km</td><td>A broad area</td><td>Check precise location and available signals</td></tr>
+            <tr><td>Over 3 km</td><td>Too coarse for a street address</td><td>Check permissions and compare another map app</td></tr>
           </tbody>
         </table>
 
@@ -214,7 +214,8 @@ export const GUIDES: Guide[] = [
         </p>
         <h3>2. Location permission is blocked</h3>
         <p>
-          If you clicked "Block" once, the site silently falls back to IP location. Fix: click the padlock in the
+          If you clicked "Block", this tool shows an error and links to the separate IP lookup; it does not silently
+          fall back. Fix: click the site settings icon in the
           address bar and set Location to Allow. Full steps are in our{" "}
           <a href="/guides/turn-on-location-services">location services guide</a>.
         </p>
@@ -252,7 +253,8 @@ export const GUIDES: Guide[] = [
         <h3>9. Your Wi-Fi router has moved</h3>
         <p>
           If you moved house and took your router, location databases may still place it at your old address for weeks.
-          Fix: use GPS outdoors a few times — your phone's contributions gradually update the database.
+          Fix: compare a fresh reading outdoors with another map. You cannot force a provider's database update by
+          refreshing this website.
         </p>
         <h3>10. Mobile data routes through another city</h3>
         <p>
@@ -272,7 +274,7 @@ export const GUIDES: Guide[] = [
 
         <h2>Device-specific quick fixes</h2>
         <ul>
-          <li><strong>iPhone:</strong> Settings → General → Transfer or Reset → Reset → Reset Location &amp; Privacy, then grant permissions again.</li>
+          <li><strong>iPhone:</strong> Check site and device permissions first. Reset Location &amp; Privacy only as a last resort: it also resets permissions for other apps.</li>
           <li><strong>Android:</strong> Settings → Location → Location services → Google Location Accuracy → On.</li>
           <li><strong>Windows:</strong> Settings → Privacy &amp; security → Location → turn on and allow desktop apps.</li>
           <li><strong>Mac:</strong> System Settings → Privacy &amp; Security → Location Services → enable for your browser.</li>
@@ -320,9 +322,9 @@ export const GUIDES: Guide[] = [
     body: () => (
       <>
         <p>
-          If a location tool says "permission denied" or "location unavailable", location is switched off at one of
-          three levels: <strong>your device</strong>, <strong>your browser app</strong>, or <strong>this
-          website</strong>. All three must allow it. Find your device below and follow the steps in order.
+          Permission denied can mean a blocked site, system setting or organizational policy. Position unavailable
+          can also mean that the device cannot obtain a fix. Check <strong>your device</strong>, <strong>your browser
+          app</strong> and <strong>this website</strong>. Settings names vary by software version; the steps below are a starting point.
         </p>
 
         <h2>iPhone and iPad</h2>
@@ -399,15 +401,15 @@ export const GUIDES: Guide[] = [
         <h2>Privacy tips</h2>
         <p>
           Choose <strong>While Using the App</strong> instead of Always, review which sites have permission every few
-          months, and only allow sites you trust. On Where Am I Right Now, coordinates are processed in your browser and
-          never stored.
+          months, and only allow sites you trust. This tool does not save a location history, but sends coordinates
+          to OpenStreetMap services for address lookup and map display. Sharing discloses the captured point to the recipient.
         </p>
       </>
     ),
     faqs: [
       { q: "I clicked Block by mistake. How do I undo it?", a: "Click the padlock or settings icon left of the website address, change Location to Allow (or Reset permission), and reload the page." },
-      { q: "Is it safe to allow location for a website?", a: "Only allow sites you trust. On Where Am I Right Now, your coordinates are processed in your browser and are never stored on our servers." },
-      { q: "Why doesn't the browser ask me for permission?", a: "Either location is blocked for the site, blocked globally in the browser, or turned off in your device's system settings. Check all three levels." },
+      { q: "Is it safe to allow location for a website?", a: "Only allow sites you trust. This tool sends coordinates to OpenStreetMap services for address lookup and map display. Read the privacy policy and revoke site access if you no longer need it." },
+      { q: "Why doesn't the browser ask me for permission?", a: "An existing grant may mean no new prompt appears. Otherwise check site permissions, browser settings, system location access and organizational restrictions. Browser geolocation requires a secure context." },
       { q: "Should I choose Always or While Using?", a: "While Using is the safer choice for browsers. It gives sites your location only when you're actively using them." },
     ],
   },
@@ -430,9 +432,10 @@ export const GUIDES: Guide[] = [
       <>
         <p>
           <strong>If you or someone else is in danger, call your local emergency number first</strong> — 911 in the US
-          and Canada, 112 across Europe and on most mobile phones worldwide, 999 in the UK, 000 in Australia, 111 in New
+          and Canada, 112 throughout the European Union, 999 in the UK, 000 in Australia, 111 in New
           Zealand. This guide helps you give an accurate location quickly, which is one of the most important things a
-          dispatcher needs.
+          dispatcher needs. Elsewhere use the locally supported number. Do not delay a call to load this website;
+          follow the dispatcher's instructions and give visible landmarks as well as any coordinates.
         </p>
 
         <h2>Your phone may already be sending your location</h2>
@@ -474,10 +477,10 @@ export const GUIDES: Guide[] = [
 
         <h2>When there's little or no signal</h2>
         <ul>
-          <li><strong>Text first</strong> — SMS often gets through when calls fail. In many countries you can text 911 or 112.</li>
-          <li><strong>Satellite SOS</strong> — iPhone 14 and later, and some Android phones, can contact emergency services via satellite without signal.</li>
+          <li><strong>Call first if you can</strong> — emergency texting is available only in supported areas and can require registration. Check local guidance; do not assume SMS reaches an emergency number.</li>
+          <li><strong>Satellite SOS</strong> — availability depends on the device, region and service. Follow your device's supported emergency instructions.</li>
           <li><strong>Write it down</strong> — GPS works offline; note your coordinates while the page is open.</li>
-          <li><strong>Move higher</strong> — climbing even a little can restore signal.</li>
+          <li><strong>Stay safe</strong> — move only if safe; do not climb or leave a safe position just to seek signal.</li>
           <li><strong>Save battery</strong> — lower brightness, close apps, turn on low-power mode.</li>
         </ul>
 
@@ -495,7 +498,7 @@ export const GUIDES: Guide[] = [
           <thead><tr><th>Region</th><th>Number</th></tr></thead>
           <tbody>
             <tr><td>United States, Canada, Mexico</td><td>911</td></tr>
-            <tr><td>European Union, most mobiles worldwide</td><td>112</td></tr>
+            <tr><td>European Union</td><td>112</td></tr>
             <tr><td>United Kingdom</td><td>999 or 112</td></tr>
             <tr><td>Australia</td><td>000 (112 on mobiles)</td></tr>
             <tr><td>New Zealand</td><td>111</td></tr>
@@ -523,7 +526,7 @@ export const GUIDES: Guide[] = [
     takeaways: [
       "Your IP reveals country, region, approximate city, ISP and time zone.",
       "It does not reveal your name, street address or exact GPS position.",
-      "IP city accuracy is often only 50–75%, and worse on mobile networks.",
+      "IP accuracy depends on the database and connection; matching estimates do not certify your position.",
       "VPNs and Tor replace your IP; GPS location is unaffected.",
     ],
     body: () => (
@@ -553,9 +556,9 @@ export const GUIDES: Guide[] = [
         <table>
           <thead><tr><th>Information</th><th>Typical accuracy</th></tr></thead>
           <tbody>
-            <tr><td>Country</td><td>~99%</td></tr>
-            <tr><td>Region / state</td><td>~80–90%</td></tr>
-            <tr><td>City</td><td>~50–75% (within 25–50 km)</td></tr>
+            <tr><td>Country</td><td>Provider estimate; may describe a VPN exit</td></tr>
+            <tr><td>Region / state</td><td>Varies by provider and network</td></tr>
+            <tr><td>City</td><td>May be wrong by large distances</td></tr>
             <tr><td>Postal code</td><td>Low; often the ISP hub's</td></tr>
             <tr><td>Internet provider &amp; ASN</td><td>Very high</td></tr>
             <tr><td>Connection type (home, mobile, business, data centre)</td><td>High</td></tr>
@@ -566,7 +569,7 @@ export const GUIDES: Guide[] = [
 
         <h2>What it does not reveal</h2>
         <ul>
-          <li><strong>Your street address or house</strong> — only your ISP can link an IP to a subscriber, and generally only under legal process.</li>
+          <li><strong>Your street address or house</strong> — not reliably from a public IP lookup alone; other records or account data can connect an IP to identifying information.</li>
           <li><strong>Your name, phone number or email.</strong></li>
           <li><strong>Your precise GPS position.</strong></li>
           <li><strong>Which device</strong> on your home network made a request.</li>
@@ -610,7 +613,7 @@ export const GUIDES: Guide[] = [
       </>
     ),
     faqs: [
-      { q: "Can someone find my house from my IP address?", a: "No. Public IP databases only estimate a city or region. Linking an IP to a specific subscriber requires records held by the internet provider." },
+      { q: "Can someone find my house from my IP address?", a: "A public IP lookup alone generally does not reveal a street address. However, account data, provider records or other information can connect an IP to a person or address, so do not treat it as anonymous." },
       { q: "Why does my IP change?", a: "Most home and mobile providers assign dynamic IPs that change periodically, when your router restarts, or when you switch networks." },
       { q: "Is it dangerous if someone knows my IP?", a: "Generally not. It reveals approximate location and provider. Keep your router updated and avoid sharing your IP publicly in gaming or chat to reduce the risk of attacks." },
       { q: "What's the difference between public and private IP?", a: "Your public IP is visible on the internet and shared by your network. Private IPs (like 192.168.x.x) identify devices inside your home network and are never seen by websites." },
@@ -696,7 +699,7 @@ export const GUIDES: Guide[] = [
         <table>
           <thead><tr><th>Feature</th><th>Google / Apple Maps</th><th>Where Am I Right Now</th></tr></thead>
           <tbody>
-            <tr><td>App install</td><td>Usually required</td><td>None — any browser</td></tr>
+            <tr><td>App install</td><td>Apps and web versions; features vary</td><td>None — supported browser</td></tr>
             <tr><td>Address + ZIP + coordinates on one screen</td><td>Several taps</td><td>Yes</td></tr>
             <tr><td>DMS and DDM coordinate formats</td><td>No</td><td>Yes</td></tr>
             <tr><td>Accuracy in metres</td><td>Visual circle only</td><td>Exact number</td></tr>
@@ -764,11 +767,12 @@ export const GUIDES: Guide[] = [
           <li><strong>Data-centre IP ranges</strong> — VPN servers live in hosting networks, not home broadband.</li>
           <li><strong>Known VPN IP lists</strong> — commercial databases flag VPN exit nodes.</li>
           <li><strong>Database disagreement</strong> — different IP databases often place VPN IPs in different cities.</li>
-          <li><strong>GPS vs IP distance</strong> — if you share precise location, a large gap is a clear sign.</li>
+          <li><strong>GPS vs IP distance</strong> — a large gap is an inconclusive signal; routing and database errors can cause it too.</li>
         </ol>
         <p>
-          Our <a href="/ip-location">where am I right now IP</a> page runs these checks automatically and shows you the
-          verdict, plus how many kilometres separate your IP location from your real position.
+          Our <a href="/ip-location">IP location page</a> compares available provider estimates and current UTC offsets,
+          reads an available proxy flag, and offers an optional device-position comparison. It does not test DNS or
+          WebRTC leaks, and none of these indicators alone proves that a VPN is active or absent.
         </p>
 
         <h2>Location leaks to watch for</h2>
@@ -791,16 +795,16 @@ export const GUIDES: Guide[] = [
 
         <h2>Can anyone find my real location through a VPN?</h2>
         <p>
-          Not from your IP address — that's the whole point of a VPN. A website can learn your precise location only if
-          you grant location permission, or if something leaks. Keep your browser and VPN app updated, use the kill
+          An IP lookup cannot reliably uncover a physical address behind a VPN. Browser geolocation needs permission,
+          but sites may also infer location from account details, previous information or leaks. Keep your browser and VPN app updated, use the kill
           switch, and review which sites have location permission.
         </p>
 
         <h2>Seeing your true location while the VPN stays on</h2>
         <p>
           Because GPS ignores your network, you can keep your VPN connected and still use the{" "}
-          <a href="/">where am I right now</a> locator to see your real street address. The location stays on your
-          device; only the coordinates are sent to look up the address.
+          <a href="/">where am I right now</a> locator to request a device reading. Accuracy depends on available signals;
+          coordinates are sent to OpenStreetMap services for the address and embedded map, not kept exclusively on the device.
         </p>
 
         <h2>How to check your VPN is working</h2>
@@ -808,7 +812,7 @@ export const GUIDES: Guide[] = [
           <li>With the VPN off, note your IP, city and ISP on the <a href="/ip-location">IP location page</a>.</li>
           <li>Connect the VPN and reload.</li>
           <li>IP, city and ISP should all change to the server's details.</li>
-          <li>The time-zone check showing a mismatch is expected and confirms the VPN is active.</li>
+          <li>A time-zone mismatch can occur, but does not confirm the VPN is active. Check the VPN app's own connection status and diagnostics.</li>
         </ol>
       </>
     ),

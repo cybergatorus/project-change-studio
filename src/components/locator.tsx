@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Check, Copy, Crosshair, ExternalLink, Loader2, MapPin, Navigation, Share2 } from "lucide-react";
 import {
-  accuracyLabel, getGpsFix, mapEmbedUrl, reverseGeocode, shortAddress, toDdm, toDms,
+  getGpsFix, mapEmbedUrl, reverseGeocode, shortAddress, toDdm, toDms,
   type AddressInfo, type GpsFix,
 } from "@/lib/geo";
 
@@ -80,7 +80,7 @@ export function Locator({ focus = "overview", cta = "Show where I am right now" 
             type="button"
             onClick={locate}
             disabled={state === "locating"}
-            className="group relative inline-flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-lg font-bold text-primary-foreground shadow-pin transition hover:scale-[1.02] disabled:opacity-80"
+            className="group relative inline-flex max-w-full items-center gap-3 overflow-hidden rounded-full bg-primary px-8 py-4 text-lg font-bold text-primary-foreground shadow-pin transition hover:scale-[1.02] disabled:opacity-80"
           >
             {state !== "locating" && <span className="absolute inset-0 rounded-full bg-primary animate-radar" aria-hidden />}
             <span className="relative inline-flex items-center gap-3">
@@ -89,7 +89,7 @@ export function Locator({ focus = "overview", cta = "Show where I am right now" 
             </span>
           </button>
           <p className="mt-4 text-sm text-muted-foreground">
-            Your browser will ask permission. Your location never leaves your device except to look up the street address.
+            Location permission is required. Coordinates go to OpenStreetMap services for address lookup and map display.
           </p>
           {state === "error" && (
             <div role="alert" className="mt-5 max-w-xl rounded-xl border border-destructive/40 bg-destructive/5 px-4 py-3 text-sm text-destructive">
@@ -162,7 +162,7 @@ export function Locator({ focus = "overview", cta = "Show where I am right now" 
                   <Row label="Country" value={addr?.country} />
                 </>
               )}
-              <Row label="Accuracy" value={`± ${Math.round(fix.accuracy)} m · ${accuracyLabel(fix.accuracy)}`} copy={false} />
+              <Row label="Estimated accuracy radius" value={`${Math.round(fix.accuracy)} m`} copy={false} />
             </div>
 
             <div className="mt-5 flex flex-wrap gap-2">

@@ -11,11 +11,11 @@ const DESC = "See your current GPS coordinates: latitude and longitude in decima
 const faqs: FaqItem[] = [
   { q: "What are my coordinates right now?", a: "Tap “Get my coordinates” and allow location. Your latitude and longitude appear in decimal degrees, degrees-minutes-seconds and degrees-decimal-minutes." },
   { q: "Which coordinate format should I use?", a: "Decimal degrees (e.g. 40.712800, -74.006000) work in Google Maps and most apps. DMS is common on paper maps and in aviation; DDM is popular with marine and geocaching GPS units." },
-  { q: "What do negative coordinates mean?", a: "Negative latitude is south of the equator; negative longitude is west of the Prime Meridian — for example, the entire United States has negative longitude." },
+  { q: "What do negative coordinates mean?", a: "Negative latitude is south of the equator; negative longitude is west of the Prime Meridian. New York, for example, has positive latitude and negative longitude. Keep the signs when copying coordinates." },
   { q: "How many decimal places do I need?", a: "Five decimals is about 1 metre precision, which is more than enough. Six decimals (~10 cm) exceeds what phone GPS can actually deliver." },
-  { q: "Which comes first, latitude or longitude?", a: "Latitude (north–south) always comes first, then longitude (east–west). Swapping them is the most common mistake and can put a pin in the ocean." },
+  { q: "Which comes first, latitude or longitude?", a: "This tool and Google Maps text search use latitude, longitude. Some other systems, including GeoJSON, use longitude, latitude. Check the destination's convention before pasting." },
   { q: "How do I enter coordinates into Google Maps?", a: "Paste decimal coordinates like 40.7128, -74.0060 into the Google Maps search box and press Enter. DMS also works if you include the N/S/E/W letters." },
-  { q: "Why is altitude not shown?", a: "Many laptops and some phones don't report altitude to browsers. When available it comes from GPS and is typically accurate to 10–20 metres." },
+  { q: "Why is altitude not shown?", a: "The device may not report altitude. Browser altitude is relative to the WGS 84 ellipsoid, not necessarily sea level. Its uncertainty is separate from the horizontal accuracy radius, so do not use it as a verified elevation." },
 ];
 
 export const Route = createFileRoute("/my-coordinates")({
@@ -82,6 +82,9 @@ function Page() {
         </table>
 
         <h2>How to use your coordinates</h2>
+        <p>The decimal-place table describes coordinate resolution, not the accuracy of the device reading. Extra
+          digits do not identify a doorway if the actual uncertainty spans several buildings. The distances shown
+          approximate latitude resolution; longitude distances become shorter toward the poles.</p>
         <ul>
           <li><strong>Google Maps / Apple Maps</strong> — paste decimal coordinates into the search bar.</li>
           <li><strong>Emergencies</strong> — read coordinates digit by digit when there's no street address nearby.</li>
@@ -93,7 +96,7 @@ function Page() {
 
         <h2>Common mistakes to avoid</h2>
         <ul>
-          <li>Swapping latitude and longitude — latitude always comes first.</li>
+          <li>Swapping latitude and longitude — use the order expected by your destination; this tool shows latitude first.</li>
           <li>Dropping the minus sign — −74 (west) and 74 (east) are on opposite sides of the world.</li>
           <li>Mixing formats — don't combine decimal minutes with seconds.</li>
           <li>Trusting a poor fix — check the accuracy value before relying on the numbers.</li>

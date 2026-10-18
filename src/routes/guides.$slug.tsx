@@ -2,9 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { CheckCircle2 } from "lucide-react";
 import { Breadcrumbs, FaqSection, RelatedTools } from "@/components/page-parts";
 import { GUIDES, getGuide } from "@/lib/guides";
-import { SITE_URL, UPDATED, articleLd, breadcrumbLd, faqLd, howToLd, pageHead } from "@/lib/seo";
-
-const absImg = (src: string) => (src.startsWith("http") ? src : `${SITE_URL}${src}`);
+import { UPDATED, articleLd, breadcrumbLd, faqLd, howToLd, pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/guides/$slug")({
   loader: ({ params }) => {
@@ -16,7 +14,8 @@ export const Route = createFileRoute("/guides/$slug")({
     const g = loaderData ? getGuide(loaderData.slug) : undefined;
     if (!g) return { meta: [{ title: "Guide not found — Where Am I Right Now" }, { name: "robots", content: "noindex" }] };
     const path = `/guides/${g.slug}`;
-    const img = absImg(g.image);
+    const img = g.image.startsWith("https://") ? g.image : undefined;
+    const { image: _defaultImage, ...article } = articleLd({ path, headline: g.title, description: g.description });
     const head = pageHead({
       path,
       title: g.title,
@@ -24,20 +23,21 @@ export const Route = createFileRoute("/guides/$slug")({
       type: "article",
       image: img,
       schemas: [
-        { ...articleLd({ path, headline: g.title, description: g.description }), image: { "@type": "ImageObject", url: img, width: 1200, height: 640, caption: g.imageAlt } },
+        { ...article, ...(img ? { image: { "@type": "ImageObject", url: img, width: 1200, height: 640, caption: g.imageAlt } } : {}) },
         breadcrumbLd([{ name: "Guides", path: "/guides" }, { name: g.short, path }]),
         faqLd(g.faqs, path),
         ...(g.steps ? [howToLd({ path, name: g.title, description: g.description, steps: g.steps })] : []),
       ],
     });
-    return { ...head, meta: [...head.meta, { property: "og:image:alt", content: g.imageAlt }, { property: "article:modified_time", content: UPDATED }] };
+    return { ...head, meta: [...head.meta, ...(img ? [{ property: "og:image:alt", content: g.imageAlt }] : []), { property: "article:modified_time", content: UPDATED }] };
   },
   component: Page,
 });
 
 function Page() {
   const { slug } = Route.useLoaderData();
-  const g = getGuide(slug)!;
+  const g = getGuide(slug);
+  if (!g) throw notFound();
   const others = GUIDES.filter((o) => o.slug !== slug).slice(0, 3);
   return (
     <>
