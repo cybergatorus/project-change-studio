@@ -15,10 +15,13 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ExactAddressRouteImport } from './routes/exact-address'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as IpLocationRouteImport } from './routes/ip-location'
+import { Route as LocalTimeRouteImport } from './routes/local-time'
 import { Route as MyCoordinatesRouteImport } from './routes/my-coordinates'
+import { Route as MyZipCodeRouteImport } from './routes/my-zip-code'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as WhatCityAmIInRouteImport } from './routes/what-city-am-i-in'
 import { Route as GuidesIndexRouteImport } from './routes/guides.index'
 import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
 
@@ -52,9 +55,19 @@ const IpLocationRoute = IpLocationRouteImport.update({
   path: '/ip-location',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LocalTimeRoute = LocalTimeRouteImport.update({
+  id: '/local-time',
+  path: '/local-time',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MyCoordinatesRoute = MyCoordinatesRouteImport.update({
   id: '/my-coordinates',
   path: '/my-coordinates',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyZipCodeRoute = MyZipCodeRouteImport.update({
+  id: '/my-zip-code',
+  path: '/my-zip-code',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -70,6 +83,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WhatCityAmIInRoute = WhatCityAmIInRouteImport.update({
+  id: '/what-city-am-i-in',
+  path: '/what-city-am-i-in',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GuidesIndexRoute = GuidesIndexRouteImport.update({
@@ -90,10 +108,13 @@ export interface FileRoutesByFullPath {
   '/exact-address': typeof ExactAddressRoute
   '/faq': typeof FaqRoute
   '/ip-location': typeof IpLocationRoute
+  '/local-time': typeof LocalTimeRoute
   '/my-coordinates': typeof MyCoordinatesRoute
+  '/my-zip-code': typeof MyZipCodeRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/what-city-am-i-in': typeof WhatCityAmIInRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/guides/': typeof GuidesIndexRoute
 }
@@ -104,10 +125,13 @@ export interface FileRoutesByTo {
   '/exact-address': typeof ExactAddressRoute
   '/faq': typeof FaqRoute
   '/ip-location': typeof IpLocationRoute
+  '/local-time': typeof LocalTimeRoute
   '/my-coordinates': typeof MyCoordinatesRoute
+  '/my-zip-code': typeof MyZipCodeRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/what-city-am-i-in': typeof WhatCityAmIInRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/guides': typeof GuidesIndexRoute
 }
@@ -119,10 +143,13 @@ export interface FileRoutesById {
   '/exact-address': typeof ExactAddressRoute
   '/faq': typeof FaqRoute
   '/ip-location': typeof IpLocationRoute
+  '/local-time': typeof LocalTimeRoute
   '/my-coordinates': typeof MyCoordinatesRoute
+  '/my-zip-code': typeof MyZipCodeRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/what-city-am-i-in': typeof WhatCityAmIInRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/guides/': typeof GuidesIndexRoute
 }
@@ -135,10 +162,13 @@ export interface FileRouteTypes {
     | '/exact-address'
     | '/faq'
     | '/ip-location'
+    | '/local-time'
     | '/my-coordinates'
+    | '/my-zip-code'
     | '/privacy'
     | '/sitemap.xml'
     | '/terms'
+    | '/what-city-am-i-in'
     | '/guides/$slug'
     | '/guides/'
   fileRoutesByTo: FileRoutesByTo
@@ -149,10 +179,13 @@ export interface FileRouteTypes {
     | '/exact-address'
     | '/faq'
     | '/ip-location'
+    | '/local-time'
     | '/my-coordinates'
+    | '/my-zip-code'
     | '/privacy'
     | '/sitemap.xml'
     | '/terms'
+    | '/what-city-am-i-in'
     | '/guides/$slug'
     | '/guides'
   id:
@@ -163,10 +196,13 @@ export interface FileRouteTypes {
     | '/exact-address'
     | '/faq'
     | '/ip-location'
+    | '/local-time'
     | '/my-coordinates'
+    | '/my-zip-code'
     | '/privacy'
     | '/sitemap.xml'
     | '/terms'
+    | '/what-city-am-i-in'
     | '/guides/$slug'
     | '/guides/'
   fileRoutesById: FileRoutesById
@@ -178,10 +214,13 @@ export interface RootRouteChildren {
   ExactAddressRoute: typeof ExactAddressRoute
   FaqRoute: typeof FaqRoute
   IpLocationRoute: typeof IpLocationRoute
+  LocalTimeRoute: typeof LocalTimeRoute
   MyCoordinatesRoute: typeof MyCoordinatesRoute
+  MyZipCodeRoute: typeof MyZipCodeRoute
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
+  WhatCityAmIInRoute: typeof WhatCityAmIInRoute
   GuidesSlugRoute: typeof GuidesSlugRoute
   GuidesIndexRoute: typeof GuidesIndexRoute
 }
@@ -230,11 +269,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IpLocationRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/local-time': {
+      id: '/local-time'
+      path: '/local-time'
+      fullPath: '/local-time'
+      preLoaderRoute: typeof LocalTimeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/my-coordinates': {
       id: '/my-coordinates'
       path: '/my-coordinates'
       fullPath: '/my-coordinates'
       preLoaderRoute: typeof MyCoordinatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/my-zip-code': {
+      id: '/my-zip-code'
+      path: '/my-zip-code'
+      fullPath: '/my-zip-code'
+      preLoaderRoute: typeof MyZipCodeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -256,6 +309,13 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/what-city-am-i-in': {
+      id: '/what-city-am-i-in'
+      path: '/what-city-am-i-in'
+      fullPath: '/what-city-am-i-in'
+      preLoaderRoute: typeof WhatCityAmIInRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/guides/': {
@@ -282,10 +342,13 @@ const rootRouteChildren: RootRouteChildren = {
   ExactAddressRoute: ExactAddressRoute,
   FaqRoute: FaqRoute,
   IpLocationRoute: IpLocationRoute,
+  LocalTimeRoute: LocalTimeRoute,
   MyCoordinatesRoute: MyCoordinatesRoute,
+  MyZipCodeRoute: MyZipCodeRoute,
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
+  WhatCityAmIInRoute: WhatCityAmIInRoute,
   GuidesSlugRoute: GuidesSlugRoute,
   GuidesIndexRoute: GuidesIndexRoute,
 }

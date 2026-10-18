@@ -7,6 +7,8 @@ export const NAV = [
   { to: "/exact-address", label: "Exact Address" },
   { to: "/ip-location", label: "My IP Location" },
   { to: "/my-coordinates", label: "Coordinates" },
+  { to: "/what-city-am-i-in", label: "My City" },
+  { to: "/my-zip-code", label: "ZIP Code" },
   { to: "/guides", label: "Guides" },
   { to: "/faq", label: "FAQ" },
 ] as const;
@@ -19,7 +21,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 glass border-b border-border">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Logo />
-        <nav className="hidden items-center gap-7 md:flex" aria-label="Main">
+        <nav className="hidden items-center gap-6 lg:flex" aria-label="Main">
           {NAV.map((n) => (
             <Link key={n.to} to={n.to} className={cls} activeProps={active}>
               {n.label}
@@ -28,14 +30,14 @@ export function SiteHeader() {
         </nav>
         <button
           aria-label={open ? "Close menu" : "Open menu"}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border md:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border lg:hidden"
           onClick={() => setOpen((v) => !v)}
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
       {open && (
-        <nav className="flex flex-col gap-4 border-t border-border bg-background px-4 py-4 md:hidden" aria-label="Mobile">
+        <nav className="flex flex-col gap-4 border-t border-border bg-background px-4 py-4 lg:hidden" aria-label="Mobile">
           <Link to="/" className={cls} onClick={() => setOpen(false)}>Locate Me</Link>
           {NAV.map((n) => (
             <Link key={n.to} to={n.to} className={cls} onClick={() => setOpen(false)}>
