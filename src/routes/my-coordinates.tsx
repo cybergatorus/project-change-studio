@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import IMG from "@/assets/guides/find-my-location-on-google-maps.jpg";
 import { Locator } from "@/components/locator";
 import { Breadcrumbs, FaqSection, PageHero, RelatedTools, Section } from "@/components/page-parts";
 import { breadcrumbLd, faqLd, pageHead, webAppLd, type FaqItem } from "@/lib/seo";
@@ -42,6 +43,7 @@ function Page() {
       <section className="px-4 py-12 sm:px-6"><Locator focus="coords" cta="Get my coordinates" /></section>
       <Section>
         <h2>What are GPS coordinates?</h2>
+        <figure className="not-prose my-8"><img src={IMG} alt="Phone map showing a GPS position with latitude and longitude accuracy circle" width={1200} height={640} loading="lazy" className="w-full rounded-3xl border border-border shadow-card" /><figcaption className="mt-2 text-center text-sm text-muted-foreground">Phone map showing a GPS position with latitude and longitude accuracy circle</figcaption></figure>
         <p>
           Every point on Earth can be described by two numbers. <strong>Latitude</strong> measures how far north or
           south of the equator you are, from −90° at the South Pole to +90° at the North Pole. <strong>Longitude</strong>{" "}

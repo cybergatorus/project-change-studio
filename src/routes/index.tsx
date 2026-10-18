@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import IMG from "@/assets/guides/how-location-detection-works.jpg";
 import { Compass, Globe2, MapPinned, ShieldCheck, Smartphone, Wifi } from "lucide-react";
 import { Locator } from "@/components/locator";
 import { FaqSection, PageHero, RelatedTools, Section } from "@/components/page-parts";
@@ -140,6 +141,7 @@ function Home() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <h2 className="text-3xl font-bold">How your device knows where you are</h2>
           <p className="mt-3 max-w-2xl text-ink-foreground/75">Your browser blends up to four signals and reports the best estimate.</p>
+          <img src={IMG} alt="GPS satellites, Wi-Fi and cell towers working together to find where you are right now" width={1200} height={640} loading="lazy" className="mt-8 w-full rounded-3xl" />
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {methods.map((m) => (
               <div key={m.title} className="rounded-2xl border border-ink-foreground/15 p-5">

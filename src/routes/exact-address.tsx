@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import IMG from "@/assets/guides/why-is-my-location-wrong.jpg";
 import { Locator } from "@/components/locator";
 import { Breadcrumbs, FaqSection, PageHero, RelatedTools, Section } from "@/components/page-parts";
 import { breadcrumbLd, faqLd, howToLd, pageHead, webAppLd, type FaqItem } from "@/lib/seo";
@@ -56,6 +57,7 @@ function Page() {
         </ol>
 
         <h2>How we turn your position into an address</h2>
+        <figure className="not-prose my-8"><img src={IMG} alt="Turning a GPS position on a phone into an exact street address" width={1200} height={640} loading="lazy" className="w-full rounded-3xl border border-border shadow-card" /><figcaption className="mt-2 text-center text-sm text-muted-foreground">Turning a GPS position on a phone into an exact street address</figcaption></figure>
         <p>
           Your device first works out your coordinates using GPS satellites, nearby Wi-Fi networks and cell towers. On
           its own, a pair of numbers like <code>40.748440, -73.985664</code> isn't much use to a taxi driver, so we
