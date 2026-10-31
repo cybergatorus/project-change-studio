@@ -59,6 +59,7 @@ export function pageHead({
         { property: "og:image", content: shareImage },
         { property: "og:image:width", content: "1200" },
         { property: "og:image:height", content: shareImage === OG_IMAGE ? "630" : "640" },
+        ...(shareImage === OG_IMAGE ? [{ property: "og:image:alt", content: `${SITE_NAME} — find your current location on a map` }] : []),
       ] : []),
       { name: "twitter:card", content: shareImage ? "summary_large_image" : "summary" },
       { name: "twitter:title", content: title },
