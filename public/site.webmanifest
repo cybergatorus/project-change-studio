@@ -1,9 +1,13 @@
 {
   "name": "Where Am I Right Now",
-  "short_name": "WhereAmI",
+  "short_name": "Where Am I",
+  "description": "Find where you are right now: GPS coordinates, mapped address and IP location.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f8f4ea",
   "theme_color": "#e8673f",
-  "icons": [{ "src": "/favicon.ico", "sizes": "48x48", "type": "image/x-icon" }]
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
 }
